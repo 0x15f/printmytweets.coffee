@@ -52,9 +52,9 @@ class ApiController extends Controller
 
     	$image_string = file_get_contents($print_files->mockupList->mockups[0]->extraMockups[4]->url);
 
-		return response()->stream(function() use ($image_string) {
-			echo $image_string;
-		}, 200, ['Content-type' => 'image/png']);
+		return response()->json([
+			'base64' => base64_encode($image_string),
+		]);
     }
 
     public function generateThumbnail(Request $request)
