@@ -51,7 +51,7 @@ class ApiController extends Controller
     	$print_files = $mockup_client->createGenerationTaskAndWaitForResult($mockup_params);
 
     	$image_string = file_get_contents($print_files->mockupList->mockups[0]->extraMockups[4]->url);
-    	
+
 		return response()->stream(function() use ($image_string) {
 			echo $image_string;
 		}, 200, ['Content-type' => 'image/png']);
@@ -213,6 +213,8 @@ class ApiController extends Controller
 		imagettftext($image, 32, 0, 580, $height - 50, $grey, $font_medium, $info['likes']);
 	
 		imagettftext($image, 32, 0, 1350 - (22 * mb_strlen($info['date'])), $height - 50, $grey, $font_bold, $info['date']);
+
+		imagescale($image, 800);
 		
 		imagealphablending($image, false);
 		ob_start();
