@@ -13,6 +13,15 @@
     </head>
     <body>
         <div id="header-title"><h1><a href="#"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
+        <header>
+            <table>
+                <tr>
+                    <td><a href="#about"><i class="bx bxs-coffee-alt"></i><br>About</a></td>
+                    <td><a href="#reviews"><i class="bx bxs-star"></i><br>Reviews</a></td>
+                    <td><a href="#buy"><i class="bx bxs-dollar-circle"></i><br>Buy</a></td>
+                </tr>
+            </table>
+        </header>
         <main>
             <div class="section" id="about">
                 <div class="grid one">
