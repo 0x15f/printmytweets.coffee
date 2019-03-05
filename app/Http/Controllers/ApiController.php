@@ -214,7 +214,7 @@ class ApiController extends Controller
 	
 		imagettftext($image, 32, 0, 1350 - (22 * mb_strlen($info['date'])), $height - 50, $grey, $font_bold, $info['date']);
 
-		imagescale($image, 800);
+		$image = imagescale($image, 800);
 		
 		imagealphablending($image, false);
 		ob_start();
