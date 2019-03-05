@@ -31,28 +31,12 @@
     </head>
     <body>
         <div id="header-title"><h1><a href="#"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
-        <header>
-            <table>
-                <tr>
-                    <td><a href="#about"><i class="bx bxs-coffee-alt"></i><br>About</a></td>
-                    <td><a href="#reviews"><i class="bx bxs-star"></i><br>Reviews</a></td>
-                    <td><a href="#buy"><i class="bx bxs-dollar-circle"></i><br>Buy</a></td>
-                </tr>
-            </table>
-        </header>
         <main>
-            <div class="section" id="about">
-                <div class="grid one">
-                    <center>
-                        <h2>About</h2>
-                        <p>Retweeting is cool and all, but have you ever printed one of your favorite tweets onto a coffee mug? Come on! You know you want to look at this every morning.</p>
-                    </center>
-                </div>
-            </div>
             <div class="section" id="buy">
             <div class="grid two">
                 <div class="grid-section">
                     <h2>Buy</h2>
+                    <p>Retweeting is cool and all, but have you ever printed one of your favorite tweets onto a coffee mug? Come on! You know you want to look at this every morning.</p>
                     <p>What are you waiting for? You can get your favorite tweet printed on a coffee mug for only $12 (with free shipping included)!</p>
                     <form>
                         <input type="text" id="tweet_url" placeholder="Tweet Link">
