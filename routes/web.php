@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::group(['prefix' => 'api'], function() {
+	Route::get('preview', 'ApiController@generateMockup')->name('api.mockup');
 
-Route::get('/home', 'HomeController@index')->name('home');
+	Route::get('thumbnail/generate', 'ApiController@generateThumbnail')->name('api.thumbnail');
+});
