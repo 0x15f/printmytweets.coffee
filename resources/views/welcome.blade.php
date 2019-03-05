@@ -55,7 +55,7 @@
                 </div>
             </div>
         </main>
-        <br><br>
+        <br>
         <footer>
             <p>&copy; <span id="automatic_copyright_year"></span> Print My Tweets a product of <a href="https://lynndigital.com">Lynn Digital LLC</a></p>
         </footer>
