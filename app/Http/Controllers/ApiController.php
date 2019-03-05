@@ -103,7 +103,7 @@ class ApiController extends Controller
 		$black = imagecolorallocate($image, 0, 0, 0);
 		imagecolortransparent($image, $black);
 		
-		$font_thin = public_path() . '/generator/EmojiOneColor-SVGinOT.ttf';//HelveticaNeueLight.ttf';
+		$font_thin = public_path() . '/generator/HelveticaNeueLight.ttf';
 		$font_regular = public_path() . '/generator/HelveticaNeue.ttf';
 		$font_medium = public_path() . '/generator//HelveticaNeueMedium.ttf';
 		$font_bold = public_path() . '/generator/HelveticaNeueBold.ttf';
