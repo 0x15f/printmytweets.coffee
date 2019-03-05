@@ -103,7 +103,7 @@ class ApiController extends Controller
 		$black = imagecolorallocate($image, 0, 0, 0);
 		imagecolortransparent($image, $black);
 		
-		$font_thin = public_path() . '/generator/HelveticaNeueLight.ttf';
+		$font_thin = public_path() . '/generator/EmojiOneColor-SVGinOT.ttf';//HelveticaNeueLight.ttf';
 		$font_regular = public_path() . '/generator/HelveticaNeue.ttf';
 		$font_medium = public_path() . '/generator//HelveticaNeueMedium.ttf';
 		$font_bold = public_path() . '/generator/HelveticaNeueBold.ttf';
@@ -214,7 +214,7 @@ class ApiController extends Controller
 	
 		imagettftext($image, 32, 0, 1350 - (22 * mb_strlen($info['date'])), $height - 50, $grey, $font_bold, $info['date']);
 
-		$image = imagescale($image, 800);
+		// $image = imagescale($image, 1400);
 		
 		imagealphablending($image, false);
 		ob_start();
