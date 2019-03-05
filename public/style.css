@@ -134,6 +134,10 @@ table td {
 	.grid-section h2 {
 		margin-top: 0px;
 	}
+
+	.center {
+		text-align: center;
+	}
 }
 
 #reviews {
