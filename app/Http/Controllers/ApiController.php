@@ -49,10 +49,10 @@ class ApiController extends Controller
     public function generateThumbnail(Request $request)
     {
 		$settings = [
-		    'oauth_access_token' => env('TWITTER_OAUTH_ACCESS_TOKEN'),//"4584563183-7yp0jqZdM4jNyyX9qpmzpAc1CywJWMoKGLgjfsf",
-		    'oauth_access_token_secret' => env('TWITTER_OAUTH_ACCESS_TOKEN_SECRET'),//"25uaIKH7QFEeQRvnEDPUoAKrnqkdK9JR3Pi5bn2CJfCxL",
-		    'consumer_key' => env('TWITTER_CONSUMER_KEY'),//"4r1vaUrCNY7Y10FQibxh96F0u",
-		    'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),//"DyuVKJZLYE9nlQlhBSFmqerMe0hkk1aK8MOG2dez6lDrcu6Qv0"
+		    'oauth_access_token' => env('TWITTER_OAUTH_ACCESS_TOKEN'),
+		    'oauth_access_token_secret' => env('TWITTER_OAUTH_ACCESS_TOKEN_SECRET'),
+		    'consumer_key' => env('TWITTER_CONSUMER_KEY'),
+		    'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
 		];
 
 		$id = @array_values(array_slice(explode('/', $request->query('url')), -1))[0];
@@ -67,7 +67,6 @@ class ApiController extends Controller
 		$response = $twitter->setGetfield('?id=' . $id)->buildOauth('https://api.twitter.com/1.1/statuses/show.json', 'GET')->performRequest();   
 
 		$response = json_decode($response, true);
-		dd($response); exit;
 
 		if(!isset($response['user']['name']))
 		{
