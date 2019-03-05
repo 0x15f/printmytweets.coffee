@@ -26,7 +26,7 @@
             <div class="section" id="about">
                 <div class="grid one">
                     <div class="grid-section">
-                        <center><img src="https://i.imgur.com/TAPm20X.jpg"></center>
+                        <center><img src="/preview.png"></center>
                     </div>
                     <div class="grid-section">
                         <h2>About</h2>
@@ -43,7 +43,7 @@
                 <div class="grid-section">
                     <h2>Buy</h2>
                     <p>What are you waiting for? You can get your favorite tweet printed on a coffee mug for only $12 (with free shipping included)!</p>
-                    <form action="https://account.1mb.site" method="POST">
+                    <form>
                         <input type="text" name="tweet" placeholder="Tweet Link">
                         <button type="submit">Buy Now</button>
                     </form>
@@ -51,13 +51,13 @@
                 <div class="grid-section">
                     <center>
                         <h2>Preview</h2>
-                        <img src="https://i.imgur.com/TAPm20X.jpg">
+                        <img src="/preview.png">
                     </center>
                 </div>
             </div>
         </main>
         <footer>
-            <p>Jake's Coffee &copy; <span id="automatic_copyright_year"></span> - <a href="https://twitter.com/jakescoffee" target="_blank"><i class="bx bxl-twitter"></i> jakescoffee</a> - Designed by <a href="https://dalton.1mb.site" target="_blank">DE</a></p>
+            <p>&copy; <span id="automatic_copyright_year"></span> Print My Tweets a product of <a href="https://lynndigital.com">Lynn Digital LLC</a></p>
         </footer>
         <script>
             document.getElementById('automatic_copyright_year').innerHTML = new Date().getFullYear();
