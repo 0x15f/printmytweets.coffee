@@ -68,6 +68,7 @@ class ApiController extends Controller
     	}
 
     	shell_exec('screenshot-tweet ' . escapeshellarg($tweet) . ' ' . escapeshellarg($file));
+    	dd('screenshot-tweet ' . escapeshellarg($tweet) . ' ' . escapeshellarg($file)); exit;
 
 		return response()->download($file, 'tweet.png', ['Content-type' => 'image/png'])->deleteFileAfterSend();
     }
