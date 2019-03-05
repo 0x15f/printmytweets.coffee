@@ -15,7 +15,7 @@ class ApiController extends Controller
 		$product = Product::create([
 			'url' => $request->query('url'),
 		]);
-		
+
     	$client = new PrintfulApiClient(env('PRINTFUL_API_KEY'));
 
     	$printful_product = $client->post('store/products', [
@@ -40,7 +40,7 @@ class ApiController extends Controller
     	]);
 
     	$mockup_client = new PrintfulMockupGenerator($client);
-    	$print_files = $mockup_client->getProductPrintFiles($printful_product['id']);
+    	$print_files = $mockup_client->getProductPrintFiles(19/*$printful_product['id']*/);
 
     	dd($printful_product, $print_files); exit;
     }
