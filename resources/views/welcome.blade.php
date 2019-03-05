@@ -50,7 +50,9 @@
                             <img id="preview-img" style="width: 250px; height: 250px;" src="/preview.png">
                         </div>
                         <br>
-                        <button class="center" type="submit">Buy Now</button>
+                        <div class="center">
+                            <button type="submit">Buy Now</button>
+                        </div>
                     </center>
                 </div>
             </div>
