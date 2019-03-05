@@ -44,8 +44,10 @@
             <div class="section" id="about">
                 <div class="grid one">
                     <div class="grid-section">
-                        <h2>About</h2>
-                        <p>Retweeting is cool and all, but have you ever printed one of your favorite tweets onto a coffee mug? Come on! You know you want to look at this every morning.</p>
+                        <center>
+                            <h2>About</h2>
+                            <p>Retweeting is cool and all, but have you ever printed one of your favorite tweets onto a coffee mug? Come on! You know you want to look at this every morning.</p>
+                        </center>
                     </div>
                 </div>
             </div>
