@@ -51,7 +51,9 @@
                 <div class="grid-section">
                     <center>
                         <h2>Preview</h2>
-                        <img style="width: 500px; height: 500px;" src="/preview.png">
+                        <img style="width: 250px; height: 250px;" src="/preview.png">
+                        <br>
+                        <button type="submit">Buy Now</button>
                     </center>
                 </div>
             </div>
