@@ -44,9 +44,6 @@
             <div class="section" id="about">
                 <div class="grid one">
                     <div class="grid-section">
-                        <center><img style="width: 500px; height: 500px;" src="/preview.png"></center>
-                    </div>
-                    <div class="grid-section">
                         <h2>About</h2>
                         <p>Retweeting is cool and all, but have you ever printed one of your favorite tweets onto a coffee mug? Come on! You know you want to look at this every morning.</p>
                     </div>
