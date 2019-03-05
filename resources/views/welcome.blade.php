@@ -26,7 +26,7 @@
             <div class="section" id="about">
                 <div class="grid one">
                     <div class="grid-section">
-                        <center><img src="/preview.png"></center>
+                        <center><img style="width: 500px; height: 500px;" src="/preview.png"></center>
                     </div>
                     <div class="grid-section">
                         <h2>About</h2>
@@ -51,7 +51,7 @@
                 <div class="grid-section">
                     <center>
                         <h2>Preview</h2>
-                        <img src="/preview.png">
+                        <img style="width: 500px; height: 500px;" src="/preview.png">
                     </center>
                 </div>
             </div>
