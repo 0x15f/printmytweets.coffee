@@ -59,17 +59,8 @@ class ApiController extends Controller
 
     public function generateThumbnail(Request $request)
     {
-    	$file = storage_path() . '/' . uniqid() . '.png';
-    	$tweet = $request->query('url');
-
-    	if($tweet === null)
-    	{
-    		return response()->json([]); //todo: error message, maybe the error tweet img?
-    	}
-
-    	shell_exec('screenshot-tweet ' . escapeshellarg($tweet) . ' ' . escapeshellarg($file));
-    	dd('screenshot-tweet ' . escapeshellarg($tweet) . ' ' . escapeshellarg($file)); exit;
-
-		return response()->download($file, 'tweet.png', ['Content-type' => 'image/png'])->deleteFileAfterSend();
+		return response()->stream(function() use ($request) {
+			echo file_get_contents('https://s1.printmytweets.coffee/?id=' . @(array_values(array_slice(explode('/', $request->query('url')), -1))[0]) . '&url=' . $request->query('url'));
+		}, 200, ['Content-type' => 'image/png']);
     }
 }
