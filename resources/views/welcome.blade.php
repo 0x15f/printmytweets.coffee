@@ -13,15 +13,6 @@
     </head>
     <body>
         <div id="header-title"><h1><a href="#"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
-        <header>
-            <table>
-                <tr>
-                    <td><a href="#about"><i class="bx bxs-coffee-alt"></i><br>About</a></td>
-                    <td><a href="#reviews"><i class="bx bxs-star"></i><br>Reviews</a></td>
-                    <td><a href="#buy"><i class="bx bxs-dollar-circle"></i><br>Buy</a></td>
-                </tr>
-            </table>
-        </header>
         <main>
             <div class="section" id="about">
                 <div class="grid one">
@@ -34,18 +25,14 @@
                     </div>
                 </div>
             </div>
-            <div class="section" id="reviews">
-                <h2>Reviews</h2>
-                <p><i>No customers yet :( You should be our first!</i></p>
-            </div>
             <div class="section" id="buy">
             <div class="grid two">
                 <div class="grid-section">
                     <h2>Buy</h2>
                     <p>What are you waiting for? You can get your favorite tweet printed on a coffee mug for only $12 (with free shipping included)!</p>
                     <form>
-                        <input type="text" name="tweet" placeholder="Tweet Link">
-                        <button type="submit">Buy Now</button>
+                        <input type="text" id="tweet_url" placeholder="Tweet Link">
+                        <button type="button" onclick="document.getElementById('preview-img').src = 'https://printmytweets.coffee/api/preview?url=' + document.getElementById('tweet_url').value">Preview</button>
                     </form>
                 </div>
                 <div class="grid-section">
