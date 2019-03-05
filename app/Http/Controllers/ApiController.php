@@ -44,7 +44,7 @@ class ApiController extends Controller
     	$mockup_client = new PrintfulMockupGenerator($client);
 
     	$mockup_params = new MockupGenerationParameters;
-    	$mockup_params->variantIds[] = $printful_product->id;
+    	$mockup_params->variantIds[] = $printful_product['id'];
 
     	$print_files = $mockup_client->createGenerationTaskAndWaitForResult($mockup_params);
 
