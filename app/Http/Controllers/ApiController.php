@@ -13,7 +13,7 @@ class ApiController extends Controller
     public function generateMockup(Request $request)
     {
     	$product = Product::where('url', '=', $request->query('url'))->get()->first();
-    	if($product !== null)
+    	if($product === null)
     	{
     		$product = Product::create([
     			'url' => $request->query('url'),
