@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Printful\PrintfulApiClient;
-use Printful\PrintfulMockupClient;
+use Printful\PrintfulMockupGenerator;
 
 use App\Product;
 
@@ -43,7 +43,7 @@ class ApiController extends Controller
     		],
     	]);
 
-    	$mockup_client = new PrintfulMockupClient($client);
+    	$mockup_client = new PrintfulMockupGenerator($client);
     	$print_files = $mockup_client->getProductPrintFiles($printful_product['id']);
 
     	dd($printful_product, $print_files); exit;
