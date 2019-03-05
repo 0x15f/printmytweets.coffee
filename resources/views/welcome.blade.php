@@ -9,7 +9,7 @@
 
         <link href="https://fonts.googleapis.com/css?family=PT+Mono:400,700" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/boxicons@1.9.1/css/boxicons.min.css" rel="stylesheet">
-        <link href="/jakescoffee.css" rel="stylesheet">
+        <link href="/style.css" rel="stylesheet">
     </head>
     <body>
         <div id="header-title"><h1><a href="#"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
