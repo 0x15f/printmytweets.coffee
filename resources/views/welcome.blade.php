@@ -80,7 +80,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script type="text/javascript">
-            $(document).on('load', () => {
+            $(document).on('load', function() {
                 document.getElementById('automatic_copyright_year').innerHTML = new Date().getFullYear();
 
                 $('#preview-button').on('click', function() {
@@ -90,7 +90,7 @@
 
                     $.ajax({
                         url: 'https://printmytweets.coffee/api/preview?url=' + url,
-                        success: (data) => {
+                        success: function(data) {
                             $('#image-holder').html('<img id="preview-img" style="width: 250px; height: 250px;" src="data:image/jpeg;base64,' + data.base64 + '">');
                         }
                     })
