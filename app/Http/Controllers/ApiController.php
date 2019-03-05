@@ -26,7 +26,7 @@ class ApiController extends Controller
     		'sync_product' => [
     			'external_id' => $product->id,
     			'name' => 'Tweet ' . substr($request->input('url'), 0, 18),
-    			'thumbnail' => route('api.thumbnail', ['product' => $product]),
+    			'thumbnail' => route('api.thumbnail', ['url' => $request->query('url')]),
     		],
     		'sync_variants' => [
     			[
@@ -34,7 +34,7 @@ class ApiController extends Controller
 	    			'variant_id' => 19,
 	    			'retail_price' => '12.99',
 	    			'files' => [
-	    				'url' => route('api.thumbnail', ['product' => $product]),
+	    				'url' => route('api.thumbnail', ['url' => $request->query('url')]),
 	    			],
 	    			'options' => [],
     			]
