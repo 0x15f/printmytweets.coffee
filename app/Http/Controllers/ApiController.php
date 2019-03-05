@@ -60,7 +60,7 @@ class ApiController extends Controller
     public function generateThumbnail(Request $request)
     {
 		return response()->stream(function() use ($request) {
-			echo file_get_contents('https://s1.printmytweets.coffee/?id=' . (array_values(array_slice(explode('/', $request->query('url')), -1))[0]) . '&url=' . $request->query('url'));
+			echo file_get_contents('https://s1.printmytweets.coffee/?id=' . @(array_values(array_slice(explode('/', $request->query('url')), -1))[0]) . '&url=' . $request->query('url'));
 		}, 200, ['Content-type' => 'image/png']);
     }
 }
