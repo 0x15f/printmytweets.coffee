@@ -56,7 +56,6 @@ class ApiController extends Controller
 		];
 
 		$id = @array_values(array_slice(explode('/', $request->query('url')), -1))[0];
-		dd($id); exit;
 		if($id === null)
 		{
 			return response()->stream(function() {
@@ -64,13 +63,11 @@ class ApiController extends Controller
 			}, 200, ['Content-type' => 'image/png']);
 		}
 
-		$url = 'https://api.twitter.com/1.1/statuses/show.json';
-		$getfield = '?id=' . $id;
-		$requestMethod = 'GET';
 		$twitter = new \TwitterAPIExchange($settings);
-		$response = $twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();   
+		$response = $twitter->setGetfield('?id=' . $id)->buildOauth('https://api.twitter.com/1.1/statuses/show.json', 'GET')->performRequest();   
 
 		$response = json_decode($response, true);
+		dd($response); exit;
 
 		if(!isset($response['user']['name']))
 		{
