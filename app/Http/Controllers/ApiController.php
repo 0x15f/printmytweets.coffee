@@ -56,6 +56,7 @@ class ApiController extends Controller
 		];
 
 		$id = @array_values(array_slice(explode('/', $request->query('url')), -1))[0];
+		dd($id); exit;
 		if($id === null)
 		{
 			return response()->stream(function() {
