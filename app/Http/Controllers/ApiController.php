@@ -12,14 +12,10 @@ class ApiController extends Controller
 {
     public function generateMockup(Request $request)
     {
-    	$product = Product::where('url', '=', $request->query('url'))->get()->first();
-    	if($product === null)
-    	{
-    		$product = Product::create([
-    			'url' => $request->query('url'),
-    		]);
-    	}
-
+		$product = Product::create([
+			'url' => $request->query('url'),
+		]);
+		
     	$client = new PrintfulApiClient(env('PRINTFUL_API_KEY'));
 
     	$printful_product = $client->post('store/products', [
