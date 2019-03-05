@@ -84,7 +84,7 @@
                 document.getElementById('automatic_copyright_year').innerHTML = new Date().getFullYear();
 
                 $('#preview-button').on('click', function() {
-                    $('#image-holder').html('<i class="bx bxs-coffee spinner"></i>');
+                    $('#image-holder').html('<i class="bx bx-lg bxs-coffee spinner"></i>');
 
                     var url = $('#tweet_url').val();
 
