@@ -50,7 +50,11 @@ class ApiController extends Controller
 
     	$print_files = $mockup_client->createGenerationTaskAndWaitForResult($mockup_params);
 
-    	dd($printful_product, $print_files); exit;
+    	$image_string = file_get_contents($print_files->mockupList->mockups[0]->extraMockups[4]->url);
+    	
+		return response()->stream(function() use ($image_string) {
+			echo $image_string;
+		}, 200, ['Content-type' => 'image/png']);
     }
 
     public function generateThumbnail(Request $request)
