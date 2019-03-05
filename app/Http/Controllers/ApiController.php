@@ -34,8 +34,10 @@ class ApiController extends Controller
 	    			'variant_id' => 1320,
 	    			'retail_price' => '12.99',
 	    			'files' => [
-	    				'url' => route('api.thumbnail', ['url' => $request->query('url')]),
-	    			],
+		    			[
+		    				'url' => route('api.thumbnail', ['url' => $request->query('url')]),
+		    			],
+		    		],
 	    			'options' => [],
     			]
     		],
