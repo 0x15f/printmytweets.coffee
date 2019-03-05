@@ -79,7 +79,7 @@
         </footer>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js" integrity="sha256-YCbKJH6u4siPpUlk130udu/JepdKVpXjdEyzje+z1pE=" crossorigin="anonymous"></script>
-        <script>
+        <script type="text/javascript">
             $(document).on('load', () => {
                 document.getElementById('automatic_copyright_year').innerHTML = new Date().getFullYear();
 
