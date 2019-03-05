@@ -31,6 +31,7 @@ class ApiController extends Controller
     		'sync_variants' => [
     			[
 	    			'external_id' => $product->id,
+	    			'variant_id' => 19,
 	    			'retail_price' => '12.99',
 	    			'files' => [
 	    				'url' => route('api.thumbnail', ['product' => $product]),
