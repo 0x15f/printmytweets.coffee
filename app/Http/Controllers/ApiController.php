@@ -66,7 +66,7 @@ class ApiController extends Controller
 		$url = 'https://api.twitter.com/1.1/statuses/show.json';
 		$getfield = '?id=' . $id;
 		$requestMethod = 'GET';
-		$twitter = new TwitterAPIExchange($settings);
+		$twitter = new \TwitterAPIExchange($settings);
 		$response = $twitter->setGetfield($getfield)->buildOauth($url, $requestMethod)->performRequest();   
 
 		$response = json_decode($response, true);
