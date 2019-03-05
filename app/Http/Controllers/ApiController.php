@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Printful\PrintfulApiClient;
 use Printful\PrintfulMockupGenerator;
 
+use Printful\Structures\Generator\MockupGenerationParameters;
+
 use App\Product;
 
 class ApiController extends Controller
@@ -40,7 +42,11 @@ class ApiController extends Controller
     	]);
 
     	$mockup_client = new PrintfulMockupGenerator($client);
-    	$print_files = $mockup_client->getProductPrintFiles(19/*$printful_product['id']*/);
+
+    	$mockup_params = new MockupGenerationParameters;
+    	$mockup_params->variantIds[] = $printful_product->id;
+
+    	$print_files = $mockup_client->createGenerationTaskAndWaitForResult($mockup_params);
 
     	dd($printful_product, $print_files); exit;
     }
