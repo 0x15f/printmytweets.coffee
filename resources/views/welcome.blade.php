@@ -40,7 +40,9 @@
                     <p>What are you waiting for? You can get your favorite tweet printed on a coffee mug for only $12 (with free shipping included)!</p>
                     <form>
                         <input type="text" id="tweet_url" placeholder="Tweet Link">
-                        <button type="button" id="preview-button">Preview</button>
+                        <div class="center">
+                            <button type="button" id="preview-button">Preview</button>
+                        </div>
                     </form>
                 </div>
                 <div class="grid-section">
@@ -50,9 +52,7 @@
                             <img id="preview-img" style="width: 250px; height: 250px;" src="/preview.png">
                         </div>
                         <br>
-                        <div class="center">
-                            <button type="submit">Buy Now</button>
-                        </div>
+                        <button class="center" type="submit">Buy Now</button>
                     </center>
                 </div>
             </div>
