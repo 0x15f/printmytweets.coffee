@@ -4,9 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d3879593adc1889ed6602ccf2b82577c",
-    "content-hash": "5bd794f0e9f4767dd92f804c897d0a3c",
+    "hash": "710ff58971d01f24ea18b0200d9a5b29",
+    "content-hash": "85050aeb1850fa8e03ede2855e828520",
     "packages": [
+        {
+            "name": "braintree/braintree_php",
+            "version": "3.39.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/braintree/braintree_php.git",
+                "reference": "19c6f50fa9fee1388ea5e7f556457243dc35a145"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/braintree/braintree_php/zipball/19c6f50fa9fee1388ea5e7f556457243dc35a145",
+                "reference": "19c6f50fa9fee1388ea5e7f556457243dc35a145",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-dom": "*",
+                "ext-hash": "*",
+                "ext-openssl": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Braintree": "lib/"
+                },
+                "psr-4": {
+                    "Braintree\\": "lib/Braintree"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Braintree",
+                    "homepage": "https://www.braintreepayments.com"
+                }
+            ],
+            "description": "Braintree PHP Client Library",
+            "time": "2019-01-24 20:25:28"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",

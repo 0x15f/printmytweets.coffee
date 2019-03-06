@@ -57,6 +57,7 @@
                         <form id="billing-form">
                             @csrf
                             <input type="email" id="email" placeholder="Email" required>
+                            <div id="dropin-container"></div>
                             <button type="button" style="text-align: left; float: left;" id="previous-step-button">Previous</button>
                         </form>
                     </div>
@@ -77,6 +78,7 @@
         </footer>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://js.braintreegateway.com/web/dropin/1.16.0/js/dropin.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 document.getElementById('automatic_copyright_year').innerHTML = new Date().getFullYear();
@@ -122,6 +124,33 @@
                     $('#billing-form').hide();
                     $('#billing-section').hide();
                 });
+            });
+        </script>
+
+        <script type="text/javascript">
+            braintree.dropin.create({
+              authorization: '{{ \Braintree\ClientToken::generate() }}',
+              selector: '#dropin-container',
+              paypal: {
+                flow: 'checkout'
+              }
+            }, function (createErr, instance) {
+              if (createErr) {
+                console.log('Create Error', createErr);
+                return;
+              }
+              // form.addEventListener('submit', function (event) {
+              //   event.preventDefault();
+              //   instance.requestPaymentMethod(function (err, payload) {
+              //     if (err) {
+              //       console.log('Request Payment Method Error', err);
+              //       return;
+              //     }
+              //     // Add the nonce to the form and submit
+              //     document.querySelector('#nonce').value = payload.nonce;
+              //     form.submit();
+              //   });
+              // });
             });
         </script>
     </body>
