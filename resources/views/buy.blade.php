@@ -54,7 +54,7 @@
                         </form>
                     </div>
                     <div class="billing-section">
-                        <form id="shipping-form">
+                        <form id="billing-form">
                             @csrf
                             <input type="email" id="email" placeholder="Email" required>
                             <button type="button" style="text-align: left; float: left;" id="previous-step-button">Previous</button>
