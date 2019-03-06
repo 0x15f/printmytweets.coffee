@@ -29,6 +29,6 @@ class OrderCreated extends Mailable
      */
     public function build()
     {
-        return $this->subject('Your order is being processed! Order #' . $this->order['id'])->markdown('email');
+        return $this->subject('Your order is being processed! Order #' . $this->order['id'])->view('email');
     }
 }
