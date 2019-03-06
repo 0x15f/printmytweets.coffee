@@ -11,6 +11,8 @@ use Printful\Structures\Generator\MockupPositionItem;
 
 use Illuminate\Support\Facades\Storage;
 
+use Braintree\Transaction;
+
 use App\Product;
 
 class ApiController extends Controller
@@ -157,7 +159,6 @@ class ApiController extends Controller
     	$printful_product = $client->get('store/products/' . $request->input('product_id'));
 
     	$est_cost = $client->post('orders/estimate-costs', [
-    		'external_id' => uniqid(),
     		'shipping' => $cheapest_quote['id'],
     		'recipient' => [
     			'address1' => $request->input('address1'),
@@ -169,7 +170,6 @@ class ApiController extends Controller
     		'items' => [
     			[
     				'id' => 1,
-    				'external_id' => uniqid(),
     				'variant_id' => 1320,
     				'sync_variant_id' => $printful_product['sync_variants'][0]['id'],
     				'external_variant_id' => $printful_product['sync_product']['external_id'],
@@ -189,9 +189,77 @@ class ApiController extends Controller
     		],
     	]);
 
+    	$request->session()->pet('shipping.order.' . $request->input('product_id') . 'costs', $est_cost);
+    	$request->session()->pet('shipping.order.' . $request->input('product_id') . 'shipping', $cheapest_quote);
+
     	return response()->json([
     		'shipping' => $cheapest_quote,
     		'total' => $est_cost['retail_costs'],
     	]);
+    }
+
+    public function handlePurchase(Request $request, $id)
+    {
+    	$request->validate([
+    		'email' => 'required|email',
+    		'payment_method_nonce' => 'required',
+    		'address1' => 'required|string',
+    		'city' => 'required|string',
+    		'country_code' => 'required|string',
+    		'state_code' => 'required|string',
+    		'zip' => 'required',
+    	]);
+
+    	if(!$request->session()->has('shipping.order.' . $id . 'costs') || !$request->session()->has('shipping.order.' . $id . 'shipping'))
+    	{
+    		return redirect()->back()->withErrors(['Your session has expired']);
+    	}
+
+    	$transaction = Transaction::sale([
+    		'paymentMethodNonce' => $request->input('payment_method_nonce'),
+    		'amount' => ($request->session()->get('shipping.order.' . $id . 'costs'))['retail_costs']['total'],
+    	]);
+
+    	if($transaction->success)
+    	{
+    		$client = new PrintfulApiClient(env('PRINTFUL_API_KEY'));
+    		try 
+    		{
+    			$product = $client->get('store/products/' . $id);
+    			$shipping = $request->session()->get('shipping.order.' . $id . 'shipping');
+
+    			$order = $client->post('orders', [
+    				'shipping' => $shipping['id']
+		    		'recipient' => [
+		    			'address1' => $request->input('address1'),
+		    			'city' => $request->input('city'),
+		    			'country_code' => $request->input('country_code'),
+		    			'state_code' => $request->input('state_code'),
+		    			'zip' => $request->input('zip'),
+		    		],
+		    		'items' => [
+		    			[
+		    				'variant_id' => 
+		    				'name' => 'Print My Tweets ~ 11oz Coffee Mug',
+		    				'retail_price' => '15.00',
+		    				'quantity' => 1,
+		    				'files' => $product['sync_variants'][0]['files'],
+		    			],
+		    		],
+    			], ['confirm' => true]);
+    		}
+    		catch(Exception $e)
+    		{
+                Transaction::void([
+                    'transactionId' => $transaction->id
+                ]);
+
+    			return redirect()->back()->withErrors(['Error occured while attempting to complete order']);
+    		}
+    	}
+    	else
+    	{
+    		return redirect()->back()->withErrors(['Error occured while attempting to complete order']);
+    	}
     }
 }

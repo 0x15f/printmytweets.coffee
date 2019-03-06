@@ -13,18 +13,22 @@
 
 use Illuminate\Http\Request;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::group(['middleware' => ['web']], function() {
+	Route::get('/', function () {
+	    return view('welcome');
+	});
 
-Route::get('/buy/{id}', function (Request $request, $id) {
-    return view('buy', ['id' => $id, 'url' => $request->query('url')]);
-});
+	Route::get('/buy/{id}', function (Request $request, $id) {
+	    return view('buy', ['id' => $id, 'url' => $request->query('url')]);
+	});
 
-Route::group(['prefix' => 'api'], function() {
-	Route::get('preview', 'ApiController@generateMockup')->name('api.mockup');
+	Route::post('/buy/{id}', 'ApiController@handlePurchase');
 
-	Route::get('thumbnail/generate', 'ApiController@generateThumbnail')->name('api.thumbnail');
+	Route::group(['prefix' => 'api'], function() {
+		Route::get('preview', 'ApiController@generateMockup')->name('api.mockup');
 
-	Route::post('shipping/calculate', 'ApiController@calculateShippingRate');
+		Route::get('thumbnail/generate', 'ApiController@generateThumbnail')->name('api.thumbnail');
+
+		Route::post('shipping/calculate', 'ApiController@calculateShippingRate');
+	});
 });

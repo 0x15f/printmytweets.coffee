@@ -110,6 +110,16 @@
                         Shipping Cost: <span id="shipping_cost">----</span><br>
                         Total Cost: <span id="total-cost">----</span>
                     </p>
+
+                    <p>
+                        @foreach($errors->all() as $error)
+                            <span style="color: red;">{{ $error }}</span><br>
+                        @endforeach
+                        @if (session()->get('error'))
+                            <span style="color: red;">{{ session()->get('error') }}</span><br>
+                        @endif
+                    </p>
+
                     <div id="shipping-section">
                         <form id="shipping-form">
                             @csrf
@@ -123,7 +133,7 @@
                         </form>
                     </div>
                     <div class="billing-section">
-                        <form id="billing-form">
+                        <form id="billing-form" method="post" action="{{ url()->current() }}">
                             @csrf
                             <input type="email" name="email" placeholder="Email" required>
                             <input type="hidden" id="nonce" name="payment_method_nonce" required>
@@ -193,7 +203,7 @@
                                     console.log('Create Error', createErr);
                                     return;
                                 }
-                                
+
                                 document.getElementById('billing-form').addEventListener('submit', function (event) {
                                     event.preventDefault();
                                     instance.requestPaymentMethod(function (err, payload) {
