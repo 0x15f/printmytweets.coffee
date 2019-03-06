@@ -155,6 +155,32 @@
                             $('#shipping_cost').html('$' + data.shipping.rate + ' ' + data.shipping.name);
                             $('#next-step-button').show();
                             $('#total-cost').html('$' + data.total.total);
+
+                            braintree.dropin.create({
+                              authorization: '{{ \Braintree\ClientToken::generate() }}',
+                              selector: '#dropin-container',
+                              paypal: {
+                                flow: 'checkout',
+                                amount: data.total.total
+                              }
+                            }, function (createErr, instance) {
+                              if (createErr) {
+                                console.log('Create Error', createErr);
+                                return;
+                              }
+                              // form.addEventListener('submit', function (event) {
+                              //   event.preventDefault();
+                              //   instance.requestPaymentMethod(function (err, payload) {
+                              //     if (err) {
+                              //       console.log('Request Payment Method Error', err);
+                              //       return;
+                              //     }
+                              //     // Add the nonce to the form and submit
+                              //     document.querySelector('#nonce').value = payload.nonce;
+                              //     form.submit();
+                              //   });
+                              // });
+                            });
                         }
                     });
                 });
@@ -172,33 +198,6 @@
                     $('#billing-form').hide();
                     $('#billing-section').hide();
                 });
-            });
-        </script>
-
-        <script type="text/javascript">
-            braintree.dropin.create({
-              authorization: '{{ \Braintree\ClientToken::generate() }}',
-              selector: '#dropin-container',
-              paypal: {
-                flow: 'checkout'
-              }
-            }, function (createErr, instance) {
-              if (createErr) {
-                console.log('Create Error', createErr);
-                return;
-              }
-              // form.addEventListener('submit', function (event) {
-              //   event.preventDefault();
-              //   instance.requestPaymentMethod(function (err, payload) {
-              //     if (err) {
-              //       console.log('Request Payment Method Error', err);
-              //       return;
-              //     }
-              //     // Add the nonce to the form and submit
-              //     document.querySelector('#nonce').value = payload.nonce;
-              //     form.submit();
-              //   });
-              // });
             });
         </script>
     </body>
