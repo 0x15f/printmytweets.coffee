@@ -36,6 +36,7 @@
         <br>
         <footer>
             <p>&copy; <span id="automatic_copyright_year"></span> Print My Tweets a product of <a href="https://lynndigital.com">Lynn Digital LLC</a></p>
+            <p><center><a href="https://twitter.com/printmytweetsco"><i class='bx bx-md bxl-twitter'></i></a></center></p>
         </footer>
 
         <script type="text/javascript">
