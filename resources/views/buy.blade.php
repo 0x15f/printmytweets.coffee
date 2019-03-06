@@ -52,7 +52,13 @@
                 font-size: 16px;
             }
 
-            .braintree-sheet__container {
+            .braintree-paypal {
+                background-color: #e2dbd7;
+                font-family: "PT Mono", monospace;
+                font-size: 16px;
+            }
+
+            .braintree-sheet {
                 background-color: #e2dbd7;
                 font-family: "PT Mono", monospace;
                 font-size: 16px;
