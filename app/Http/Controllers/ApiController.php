@@ -260,7 +260,7 @@ class ApiController extends Controller
 
     			Mail::to($request->input('email'))->send(new OrderCreated($order));
 
-    			return redirect()->route('order', ['id' => $order['id']]);
+    			// return redirect()->route('order', ['id' => $order['id']]);
     		// }
     		// catch(Exception $e)
     		// {
