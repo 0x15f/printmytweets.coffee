@@ -122,7 +122,7 @@ class ApiController extends Controller
     		],
     		'items' => [
     			[
-	    			'variant_id' => $request->input('product_id'),
+	    			'external_variant_id' => $request->input('product_id'),
 	    			'quantity' => 1,
     			],
     		],
