@@ -154,7 +154,7 @@ class ApiController extends Controller
 
     	$product = Product::where('url', '=', $request->input('url'))->get()->first();
 
-    	$printful_product = $client->get('products/' . $request->input('product_id'));
+    	$printful_product = $client->get('store/products/' . $request->input('product_id'));
 
     	$est_cost = $client->post('orders/estimate-costs', [
     		'external_id' => uniqid(),
