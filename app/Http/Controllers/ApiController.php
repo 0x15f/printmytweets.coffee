@@ -112,8 +112,6 @@ class ApiController extends Controller
 
     	$client = new PrintfulApiClient(env('PRINTFUL_API_KEY'));
 
-    	$product = $client->get('store/products/' . $request->input('product_id'));
-
     	$quote = $client->post('shipping/rates', [
     		'recipient' => [
     			'address1' => $request->input('address1'),
@@ -124,7 +122,7 @@ class ApiController extends Controller
     		],
     		'items' => [
     			[
-	    			'variant_id' => $product['sync_variants'][0]['id'],
+	    			'variant_id' => 1320,
 	    			'quantity' => 1,
     			],
     		],
