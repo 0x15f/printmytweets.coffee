@@ -50,7 +50,14 @@
                             <input type="text" id="country_code" placeholder="Country Code" required>
                             <input type="text" id="zip" placeholder="Zip/Postal Code" required>
                             <button type="submit">Calculate Shipping Cost</button>
-                            <button type="button" style="text-align: right; float: right;" id="next-step-button">Next Step</button>
+                            <button type="button" style="text-align: right; float: right;" id="next-step-button">Next</button>
+                        </form>
+                    </div>
+                    <div class="billing-section">
+                        <form id="shipping-form">
+                            @csrf
+                            <input type="email" id="email" placeholder="Email" required>
+                            <button type="button" style="text-align: left; float: left;" id="previous-step-button">Previous</button>
                         </form>
                     </div>
                 </div>
@@ -94,9 +101,20 @@
                         },
                         success: function(data) {
                             $('#shipping_cost').html('$' + data.shipping.rate + ' ' + data.shipping.name);
+                            $('#next-step-button').show();
                             $('#total-cost').html('$' + data.total.total);
                         }
                     });
+                });
+
+                $('#next-step-button').on('click', function() {
+                    $('#shipping-section').hide();
+                    $('#billing-section').show();
+                });
+
+                $('#previous-step-button').on('click', function() {
+                    $('#shipping-section').show();
+                    $('#billing-section').hide();
                 });
             });
         </script>
