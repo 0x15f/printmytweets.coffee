@@ -35,24 +35,28 @@
             <div class="section" id="buy">
             <div class="grid two">
                 <div class="grid-section">
-                    <h2>Buy</h2>
-                    <p>Retweeting is cool and all, but have you ever printed one of your favorite tweets onto a coffee mug? Come on! You know you want to look at this every morning.</p>
-                    <p>What are you waiting for? You can get your favorite tweet printed on a coffee mug for only $12 (with free shipping included)!</p>
-                    <form>
-                        <input type="text" id="tweet_url" onclick="this.setSelectionRange(0, this.value.length);" placeholder="Tweet Link">
-                        <div class="center">
-                            <button type="button" id="preview-button">Preview</button>
-                        </div>
+                    <h2>Complete Order</h2>
+                    <p>
+                        Mug Cost: $12.99
+                        Shipping Cost: <div id="shipping_cost">----</div>
+                    </p>
+                    <form id="shipping-form">
+                        @csrf
+                        <input type="text" id="address1" placeholder="Address" required>
+                        <input type="text" id="city" placeholder="City" required>
+                        <input type="text" id="state_code" placeholder="State/Province Code" required>
+                        <input type="text" id="country_code" placeholder="Country Code" required>
+                        <input type="text" id="zip" placeholder="Zip/Postal Code" required>
+                        <button type="submit">Calculate Shipping Cost</button>
+                        <button type="button" id="next-step-button" disabled>Next Step</button>
                     </form>
                 </div>
                 <div class="grid-section">
                     <center>
                         <h2>Preview</h2>
                         <div id="image-holder">
-                            <img id="preview-img" style="width: 250px; height: 250px;" src="/preview.jpg">
+                            <img id="preview-img" style="width: 250px; height: 250px;" src="/order_images/{{ $id }}.png">
                         </div>
-                        <br>
-                        <button id="buy-button" class="center" type="button" product-id="" disabled>Order Now</button>
                     </center>
                 </div>
             </div>
@@ -67,25 +71,26 @@
             $(document).ready(function() {
                 document.getElementById('automatic_copyright_year').innerHTML = new Date().getFullYear();
 
-                $('#preview-button').on('click', function() {
-                    $('#image-holder').html('<i class="bx bx-lg bxs-coffee spinner"></i>');
-                    $('#preview-button').attr('disabled', true);
+                $('#next-step-button').hide();
 
-                    var url = $('#tweet_url').val();
+                $('#shipping-form').on('submit', function(event) {
+                    event.preventDefault();
 
                     $.ajax({
-                        url: 'https://printmytweets.coffee/api/preview?url=' + url,
+                        url: '/api/shipping/calculate',
+                        data: {
+                            '_token': '{{ csrf_token() }}',
+                            'product_id': '{{ $id }}',
+                            'address1': $('#address1').val(),
+                            'city': $('#city').val(),
+                            'country_code': $('#country_code').val(),
+                            'state_code': $('#state_code').val(),
+                            'zip': $('#zip').val()
+                        },
                         success: function(data) {
-                            $('#image-holder').html('<img id="preview-img" style="width: 250px; height: 250px;" src="data:image/jpeg;base64,' + data.base64 + '">');
-                            $('#preview-button').attr('disabled', false);
-                            $('#buy-button').attr('disabled', false);
-                            $('#buy-button').attr('product-id', data.product_id);
+                            $('#shipping_cost').html('$' + data.rate + ' ' + data.name);
                         }
-                    })
-                });
-
-                $('#buy-button').on('click', function() {
-                    window.location.href = '/buy/' + $('#buy-button').attr('product-id');
+                    });
                 });
             });
         </script>

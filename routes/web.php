@@ -15,8 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/buy/{id}', function ($id) {
+    return view('buy', ['id' => $id]);
+});
+
 Route::group(['prefix' => 'api'], function() {
 	Route::get('preview', 'ApiController@generateMockup')->name('api.mockup');
 
 	Route::get('thumbnail/generate', 'ApiController@generateThumbnail')->name('api.thumbnail');
+
+	Route::post('shipping/calculate', 'ApiController@calculateShippingRate');
 });

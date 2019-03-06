@@ -9,6 +9,8 @@ use Printful\PrintfulMockupGenerator;
 use Printful\Structures\Generator\MockupGenerationParameters;
 use Printful\Structures\Generator\MockupPositionItem;
 
+use Illuminate\Support\Facades\Storage;
+
 use App\Product;
 
 class ApiController extends Controller
@@ -82,6 +84,8 @@ class ApiController extends Controller
 
     	$image_string = file_get_contents($print_files->mockupList->mockups[0]->extraMockups[0]->url);
 
+    	Storage::disk('public')->put($printful_product['id'] . '.png', $image_string);
+
 		return response()->json([
 			'base64' => base64_encode($image_string),
 			'product' => $printful_product['id'],
@@ -97,6 +101,31 @@ class ApiController extends Controller
 
     public function calculateShippingRate(Request $request)
     {
+    	$request->validate([
+    		'product_id' => 'required|numeric',
+    		'address1' => 'required|string',
+    		'city' => 'required|string',
+    		'country_code' => 'required|string',
+    		'state_code' => 'required|string',
+    		'zip' => 'required',
+    	]);
 
+    	$client = new PrintfulApiClient(env('PRINTFUL_API_KEY'));
+
+    	$quote = $client->post('shipping/rates', [
+    		'recipient' => [
+    			'address1' => $request->input('address1'),
+    			'city' => $request->input('city'),
+    			'country_code' => $request->input('country_code'),
+    			'state_code' => $request->input('state_code'),
+    			'zip' => $request->input('zip'),
+    		],
+    		'items' => [
+    			'variant_id' => $request->input('product_id'),
+    			'quantity' => 1,
+    		],
+    	]);
+
+    	return response()->json($quote);
     }
 }
