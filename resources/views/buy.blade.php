@@ -76,19 +76,33 @@
                 font-size: 16px;
             }  
 
-            #loader {
+            .loader {
                 position: fixed;
                 left: 0px;
                 top: 0px;
                 width: 100%;
                 height: 100%;
                 z-index: 9999;
+                background-color: #e2dbd7;
+            }
+
+            .loader-icon {
+                position: fixed;
+                z-index: 999;
+                height: 2em;
+                width: 2em;
+                overflow: visible;
+                margin: auto;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
             }
         </style>
     </head>
     <body>
+        <div id="loader"><i class="bx bx-lg bxs-coffee spinner loader-icon"></i></div>
         <div id="header-title"><h1><a href="#"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
-        <div id="loader"><i class="bx bx-lg bxs-coffee spinner"></i></div>
         <main>
             <div class="section" id="buy">
             <div class="grid two">
@@ -145,7 +159,7 @@
                 $('#billing-section').hide();
                 $('#billing-form').hide();
 
-                $('.loader').fadeOut();
+                $('#loader').fadeOut();
 
                 $('#shipping-form').on('submit', function(event) {
                     event.preventDefault();
