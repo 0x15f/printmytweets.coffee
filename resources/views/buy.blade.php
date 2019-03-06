@@ -481,6 +481,12 @@
                                 $('#dropin-container').show();
                                 $('#email').show();
 
+                                instance.on('paymentMethodRequestable', function (event) {
+                                    if(event.paymentMethodIsSelected) {
+                                        $('#payment-hide').show();
+                                    }
+                                });
+
                                 document.getElementById('billing-form').addEventListener('submit', function (event) {
                                     event.preventDefault();
                                     instance.requestPaymentMethod(function (err, payload) {
