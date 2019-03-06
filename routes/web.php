@@ -11,12 +11,14 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/buy/{id}', function ($id) {
-    return view('buy', ['id' => $id]);
+Route::get('/buy/{id}', function (Request $request, $id) {
+    return view('buy', ['id' => $id, 'url' => $request->query('url')]);
 });
 
 Route::group(['prefix' => 'api'], function() {

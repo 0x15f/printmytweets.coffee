@@ -38,18 +38,21 @@
                     <h2>Complete Order</h2>
                     <p>
                         Mug Cost: $15<br>
-                        Shipping Cost: <span id="shipping_cost">----</span>
+                        Shipping Cost: <span id="shipping_cost">----</span><br>
+                        Total Cost: <span id="total-cost"></span>
                     </p>
-                    <form id="shipping-form">
-                        @csrf
-                        <input type="text" id="address1" placeholder="Address" required>
-                        <input type="text" id="city" placeholder="City" required>
-                        <input type="text" id="state_code" placeholder="State/Province Code" required>
-                        <input type="text" id="country_code" placeholder="Country Code" required>
-                        <input type="text" id="zip" placeholder="Zip/Postal Code" required>
-                        <button type="submit">Calculate Shipping Cost</button>
-                        <button type="button" id="next-step-button" disabled>Next Step</button>
-                    </form>
+                    <div id="shipping-section">
+                        <form id="shipping-form">
+                            @csrf
+                            <input type="text" id="address1" placeholder="Address" required>
+                            <input type="text" id="city" placeholder="City" required>
+                            <input type="text" id="state_code" placeholder="State/Province Code" required>
+                            <input type="text" id="country_code" placeholder="Country Code" required>
+                            <input type="text" id="zip" placeholder="Zip/Postal Code" required>
+                            <button type="submit">Calculate Shipping Cost</button>
+                            <button type="button" style="text-align: right; float: right;" id="next-step-button">Next Step</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="grid-section">
                     <center>
@@ -81,6 +84,7 @@
                         method: 'POST',
                         data: {
                             '_token': '{{ csrf_token() }}',
+                            'url': '{{ $url }}'
                             'product_id': '{{ $id }}',
                             'address1': $('#address1').val(),
                             'city': $('#city').val(),
@@ -89,7 +93,7 @@
                             'zip': $('#zip').val()
                         },
                         success: function(data) {
-                            $('#shipping_cost').html('$' + data.rate + ' ' + data.name);
+                            $('#shipping_cost').html('$' + data.shipping.rate + ' ' + data.shipping.name);
                         }
                     });
                 });

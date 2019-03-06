@@ -152,6 +152,46 @@ class ApiController extends Controller
     		}
     	}
 
-    	return response()->json($cheapest_quote);
+    	$product = Product::where('url', '=', $request->input('url'))->get()->first();
+
+    	$printful_product = $client->get('products/' . $request->input('product_id'));
+
+    	$est_cost = $client->post('orders/estimate-costs', [
+    		'external_id' => uniqid(),
+    		'shipping' => $cheapest_quote['id'],
+    		'recipient' => [
+    			'address1' => $request->input('address1'),
+    			'city' => $request->input('city'),
+    			'country_code' => $request->input('country_code'),
+    			'state_code' => $request->input('state_code'),
+    			'zip' => $request->input('zip'),
+    		],
+    		'items' => [
+    			[
+    				'id' => 1,
+    				'external_id' => uniqid(),
+    				'variant_id' => 1320,
+    				'sync_variant_id' => $printful_product['id'],
+    				'external_variant_id' => $printful_product['sync_product']['external_id'],
+    				'quantity' => 1,
+    				'price' => 7.95,
+    				'retail_price' => 15,
+    				'name' => 'Print My Tweets ~ 11oz Coffee Mug',
+    				'product' => [
+    					'variant_id' => 1320,
+    					'product_id' => 19,
+    					'image' => $printful_product['sync_variants'][0]['files'][1]['thumbnail_url'],
+    					'name' => 'Print My Tweets ~ 11oz Coffee Mug',
+    				],
+    				'files' => $printful_product['sync_variants'][0]['files'],
+    				'sku' => uniqid(),
+    			],
+    		],
+    	]);
+
+    	return response()->json([
+    		'shipping' => $cheapest_quote,
+    		'total' => $est_cost,
+    	]);
     }
 }

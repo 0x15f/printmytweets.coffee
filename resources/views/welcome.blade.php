@@ -85,7 +85,7 @@
                 });
 
                 $('#buy-button').on('click', function() {
-                    window.location.href = '/buy/' + $('#buy-button').attr('product-id');
+                    window.location.href = '/buy/' + $('#buy-button').attr('product-id') + '?url=' + $('#tweet_url').val();
                 });
             });
         </script>
