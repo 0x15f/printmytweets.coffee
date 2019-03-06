@@ -33,7 +33,7 @@ class ApiController extends Controller
     			[
 	    			'external_id' => $product->id,
 	    			'variant_id' => 1320,
-	    			'retail_price' => '12.99',
+	    			'retail_price' => '15',
 	    			'files' => [
 		    			[
 		    				'url' => route('api.thumbnail', ['url' => $request->query('url')]),

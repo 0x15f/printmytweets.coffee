@@ -37,7 +37,7 @@
                 <div class="grid-section">
                     <h2>Complete Order</h2>
                     <p>
-                        Mug Cost: $12.99<br>
+                        Mug Cost: $15<br>
                         Shipping Cost: <span id="shipping_cost">----</span>
                     </p>
                     <form id="shipping-form">
