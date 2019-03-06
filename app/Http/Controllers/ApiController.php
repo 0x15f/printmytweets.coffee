@@ -281,7 +281,7 @@ class ApiController extends Controller
     {
     	$client = new PrintfulApiClient(env('PRINTFUL_API_KEY'));
 
-    	$order = $client->get('order/' . $id);
+    	$order = $client->get('orders/' . $id);
 
     	return view('status', [
     		'order' => $order,
