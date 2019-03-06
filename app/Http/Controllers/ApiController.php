@@ -112,7 +112,7 @@ class ApiController extends Controller
 
     	$client = new PrintfulApiClient(env('PRINTFUL_API_KEY'));
 
-    	$quote = $client->post('shipping/rates', [
+    	$quotes = $client->post('shipping/rates', [
     		'recipient' => [
     			'address1' => $request->input('address1'),
     			'city' => $request->input('city'),
@@ -128,6 +128,30 @@ class ApiController extends Controller
     		],
     	]);
 
-    	return response()->json($quote);
+    	$cheapest_quote = null;
+    	$lowest_price = null;
+    	foreach($quotes as $key => $value)
+    	{
+    		if(!is_numeric($key))
+    		{
+    			$cheapest_quote = $quotes;
+    			break;
+    		}
+
+    		if($lowest_price === null)
+    		{
+    			$lowest_price = $value['rate'];
+    			$cheapest_quote = $value;
+    			continue;
+    		}
+
+    		if($lowest_price > $value['rate'])
+    		{
+    			$lowest_price = $value['rate'];
+    			$cheapest_quote = $value;
+    		}
+    	}
+
+    	return response()->json($cheapest_quote);
     }
 }
