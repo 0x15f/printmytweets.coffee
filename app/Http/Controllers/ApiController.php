@@ -239,7 +239,8 @@ class ApiController extends Controller
 		    		],
 		    		'items' => [
 		    			[
-		    				'variant_id' => 
+		    				'variant_id' => 1320
+		    				'sync_variant_id' => $printful_product['sync_variants'][0]['id'],
 		    				'name' => 'Print My Tweets ~ 11oz Coffee Mug',
 		    				'retail_price' => '15.00',
 		    				'quantity' => 1,
