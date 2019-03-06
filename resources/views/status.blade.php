@@ -22,11 +22,16 @@
                     <h2>Order #{{ $order['id'] }}</h2>
                     <p>
                         Your order status is {{ $order['status'] }}! If you have any questions or concerns don't hesitate to reach out to <a href="mailto:support@printmytweets.coffee">support@printmytweets.coffee</a>.
-                    </p>
-                    <button type="button" onclick="window.location.href = '{{ @$order['shipments'][0]['tracking_url'] }}'">Track Order</button>
+                    </p><br>
+                    <button type="button" onclick="window.location.href = '{{ @$order['shipments'][0]['tracking_url'] === null ? '#' : @$order['shipments'][0]['tracking_url'] }}'">Track Order</button>
                 </div>
                 <div class="grid-section">
-                    <!-- todo: map -->
+                    <center>
+                        <h2>Preview</h2>
+                        <div id="image-holder">
+                            <img id="preview-img" style="width: 250px; height: 250px;" src="/storage/{{ $order['items'][0]['sync_variant_id'] }}.png">
+                        </div>
+                    </center>
                 </div>
             </div>
         </main>
