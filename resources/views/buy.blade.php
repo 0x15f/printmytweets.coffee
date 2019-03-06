@@ -82,6 +82,7 @@
                 document.getElementById('automatic_copyright_year').innerHTML = new Date().getFullYear();
 
                 $('#next-step-button').hide();
+                $('#billing-section').hide();
 
                 $('#shipping-form').on('submit', function(event) {
                     event.preventDefault();
