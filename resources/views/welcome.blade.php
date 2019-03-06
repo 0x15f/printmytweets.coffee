@@ -11,6 +11,8 @@
         <link href="https://cdn.jsdelivr.net/npm/boxicons@1.9.1/css/boxicons.min.css" rel="stylesheet">
         <link href="/style.css" rel="stylesheet">
 
+        <link rel="icon" type="image/png" href="/favicon.png">
+
         <style type="text/css">
             .spinner {
               animation-name: spin;

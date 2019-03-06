@@ -11,6 +11,8 @@
         <link href="https://cdn.jsdelivr.net/npm/boxicons@1.9.1/css/boxicons.min.css" rel="stylesheet">
         <link href="/style.css" rel="stylesheet">
 
+        <link rel="icon" type="image/png" href="/favicon.png">
+
         <style type="text/css">
             .spinner {
               animation-name: spin;
@@ -97,7 +99,7 @@
     </head>
     <body>
         <div id="loader"><i class="bx bx-lg bxs-coffee spinner loader-icon"></i></div>
-        <div id="header-title"><h1><a href="#"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
+        <div id="header-title"><h1><a href="/"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
         <main>
             <div class="section" id="buy">
             <div class="grid two">
