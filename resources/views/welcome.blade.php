@@ -40,8 +40,11 @@
                     <h2>Buy</h2>
                     <p>Retweeting is cool and all, but have you ever printed one of your favorite tweets onto a coffee mug? Come on! You know you want to look at this every morning.</p>
                     <p>What are you waiting for? You can get your favorite tweet printed on a coffee mug for only $15!</p>
+                    <p>
+                        <span id="error" style="color: red;">Please enter a valid twitter url</span>
+                    </p>
                     <form>
-                        <input type="text" id="tweet_url" onclick="this.setSelectionRange(0, this.value.length);" placeholder="Tweet Link">
+                        <input type="text" id="tweet_url" onclick="this.setSelectionRange(0, this.value.length);" placeholder="Tweet Link" >
                         <div class="center">
                             <button type="button" id="preview-button">Preview</button>
                         </div>
@@ -69,11 +72,20 @@
             $(document).ready(function() {
                 document.getElementById('automatic_copyright_year').innerHTML = new Date().getFullYear();
 
+                $('#error').hide();
+
                 $('#preview-button').on('click', function() {
                     $('#image-holder').html('<i class="bx bx-lg bxs-coffee spinner"></i>');
                     $('#preview-button').attr('disabled', true);
 
                     var url = $('#tweet_url').val();
+
+                    $('#error').hide();
+                    if(!url.match('/(?:http:\/\/)?(?:www\.)?twitter\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/g'))
+                    {
+                        $('#error').show();
+                        return false;
+                    }
 
                     $.ajax({
                         url: 'https://printmytweets.coffee/api/preview?url=' + url,
