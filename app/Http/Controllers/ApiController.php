@@ -44,19 +44,19 @@ class ApiController extends Controller
 
     	$mockup_client = new PrintfulMockupGenerator($client);
 
-    	$position = new MockupPositionItem;
-    	$position->areaWidth = 9;
-    	$position->areaHeight = 3.5;
-    	$position->width = 9;
-    	$position->height = 3.5;
-    	$position->top = 1;
-    	$position->left = 0;
+    	// $position = new MockupPositionItem;
+    	// $position->areaWidth = 9;
+    	// $position->areaHeight = 3.5;
+    	// $position->width = 9;
+    	// $position->height = 3.5;
+    	// $position->top = 1;
+    	// $position->left = 0;
 
     	$mockup_params = new MockupGenerationParameters;
     	$mockup_params->productId = 19;
     	$mockup_params->variantIds[] = 1320;
     	// $mockup_params->optionGroups[] = '';
-    	$mockup_params->addImageUrl('default', route('api.thumbnail', ['url' => $request->query('url')]), $position);
+    	$mockup_params->addImageUrl('default', route('api.thumbnail', ['url' => $request->query('url')])/*, $position*/);
 
     	$print_files = $mockup_client->createGenerationTaskAndWaitForResult($mockup_params);
 
