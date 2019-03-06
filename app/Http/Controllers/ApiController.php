@@ -7,6 +7,7 @@ use Printful\PrintfulApiClient;
 use Printful\PrintfulMockupGenerator;
 
 use Printful\Structures\Generator\MockupGenerationParameters;
+use Printful\Structures\Generator\MockupPositionItem;
 
 use App\Product;
 
@@ -43,10 +44,19 @@ class ApiController extends Controller
 
     	$mockup_client = new PrintfulMockupGenerator($client);
 
+    	$position = new MockupPositionItem;
+    	$position->areaWidth = 2700;
+    	$position->areaHeight = 1050;
+    	$position->width = 1350;
+    	$position->height = 525;
+    	$position->top = 50;
+    	$position->left = 0;
+
     	$mockup_params = new MockupGenerationParameters;
     	$mockup_params->productId = 19;
     	$mockup_params->variantIds[] = 1320;
-    	$mockup_params->addImageUrl('default', route('api.thumbnail', ['url' => $request->query('url')]));
+    	$mockup_params->optionGroups[] = '';
+    	$mockup_params->addImageUrl('default', route('api.thumbnail', ['url' => $request->query('url')]), $position);
 
     	$print_files = $mockup_client->createGenerationTaskAndWaitForResult($mockup_params);
 

@@ -52,7 +52,7 @@
                             <img id="preview-img" style="width: 250px; height: 250px;" src="/preview.png">
                         </div>
                         <br>
-                        <button class="center" type="submit">Buy Now</button>
+                        <button class="center" type="submit">Order Now</button>
                     </center>
                 </div>
             </div>
