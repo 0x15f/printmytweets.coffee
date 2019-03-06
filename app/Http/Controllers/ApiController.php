@@ -248,6 +248,8 @@ class ApiController extends Controller
 		    			],
 		    		],
     			]/*, ['confirm' => true]*/);
+
+    			dd($order); exit;
     		// }
     		// catch(Exception $e)
     		// {
