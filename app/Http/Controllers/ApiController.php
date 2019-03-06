@@ -283,6 +283,21 @@ class ApiController extends Controller
 
     	$order = $client->get('orders/' . $id);
 
+    	switch($order['status'])
+    	{
+    		case 'pending';
+    			$order['status'] = 'Waiting to be printed';
+    		break;
+    		case 'inprocess';
+    			$order['status'] = 'Bring printed';
+    		break;
+    		case 'fulfilled';
+    			$order['status'] = 'Shipped';
+    		break;
+    		default:
+    			$order['status'] = ucfirst($order['status']);
+    	}
+
     	return view('status', [
     		'order' => $order,
     	]);
