@@ -191,7 +191,7 @@ class ApiController extends Controller
 
     	return response()->json([
     		'shipping' => $cheapest_quote,
-    		'total' => $est_cost,
+    		'total' => $est_cost['costs']['retail_costs'],
     	]);
     }
 }
