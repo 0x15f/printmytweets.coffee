@@ -97,8 +97,6 @@ class ApiController extends Controller
 
     public function calculateShippingRate(Request $request)
     {
-    	$request->validate([
-    		''
-    	]);
+
     }
 }
