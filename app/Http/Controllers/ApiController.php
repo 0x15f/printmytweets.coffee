@@ -229,7 +229,7 @@ class ApiController extends Controller
     			$shipping = $request->session()->get('shipping.order.' . $id . 'shipping');
 
     			$order = $client->post('orders', [
-    				'shipping' => $shipping['id']
+    				'shipping' => $shipping['id'],
 		    		'recipient' => [
 		    			'address1' => $request->input('address1'),
 		    			'city' => $request->input('city'),
