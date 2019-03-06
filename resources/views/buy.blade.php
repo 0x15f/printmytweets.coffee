@@ -125,9 +125,11 @@
                     <div class="billing-section">
                         <form id="billing-form">
                             @csrf
-                            <input type="email" id="email" placeholder="Email" required>
+                            <input type="email" name="email" placeholder="Email" required>
+                            <input type="hidden" id="nonce" name="payment_method_nonce" required>
                             <div id="dropin-container"></div>
                             <button type="button" style="text-align: left; float: left;" id="previous-step-button">Previous</button>
+                            <button type="submit" style="text-align: right; float: right;" id="previous-step-button">Confirm Order</button>
                         </form>
                     </div>
                 </div>
@@ -191,18 +193,18 @@
                                 console.log('Create Error', createErr);
                                 return;
                               }
-                              // form.addEventListener('submit', function (event) {
-                              //   event.preventDefault();
-                              //   instance.requestPaymentMethod(function (err, payload) {
-                              //     if (err) {
-                              //       console.log('Request Payment Method Error', err);
-                              //       return;
-                              //     }
-                              //     // Add the nonce to the form and submit
-                              //     document.querySelector('#nonce').value = payload.nonce;
-                              //     form.submit();
-                              //   });
-                              // });
+                              form.addEventListener('submit', function (event) {
+                                event.preventDefault();
+                                instance.requestPaymentMethod(function (err, payload) {
+                                  if (err) {
+                                    console.log('Request Payment Method Error', err);
+                                    return;
+                                  }
+
+                                  document.querySelector('#nonce').value = payload.nonce;
+                                  form.submit();
+                                });
+                              });
                             });
                         }
                     });
