@@ -174,7 +174,7 @@ class ApiController extends Controller
     				'sync_variant_id' => $printful_product['sync_variants'][0]['id'],
     				'external_variant_id' => $printful_product['sync_product']['external_id'],
     				'quantity' => 1,
-    				'price' => 7.95,
+    				'price' => 15,
     				'retail_price' => 15,
     				'name' => 'Print My Tweets ~ 11oz Coffee Mug',
     				'product' => [
