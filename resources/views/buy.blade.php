@@ -386,7 +386,7 @@
                     <div class="billing-section">
                         <form id="billing-form" method="post" action="{{ url()->current() }}">
                             @csrf
-                            <input type="email" name="email" placeholder="Email" required>
+                            <input type="email" id="email" name="email" placeholder="Email" required>
                             <input type="hidden" id="nonce" name="payment_method_nonce" required>
                             <div id="billing-loader">
                                 <center><i class="bx bx-lg bxs-coffee spinner"></i></center>
@@ -458,6 +458,7 @@
                             $('#total-cost').html('$' + data.total.total);
 
                             $('#dropin-container').hide();
+                            $('#email').hide();
                             $('#billing-loader').show();
 
                             braintree.dropin.create({
@@ -476,6 +477,7 @@
 
                                 $('#billing-loader').hide();
                                 $('#dropin-container').show();
+                                $('#email').show();
 
                                 document.getElementById('billing-form').addEventListener('submit', function (event) {
                                     event.preventDefault();
