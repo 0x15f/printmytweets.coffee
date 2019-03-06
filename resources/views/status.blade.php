@@ -23,7 +23,7 @@
                     <p>
                         Your order status is {{ $order['status'] }}! If you have any questions or concerns don't hesitate to reach out to <a href="mailto:support@printmytweets.coffee">support@printmytweets.coffee</a>.
                     </p>
-                    <button type="button" onclick="window.location.href = '{{ @$order['shipments'][0][['tracking_url'] }}'">Track Order</button>
+                    <button type="button" onclick="window.location.href = '{{ @$order['shipments'][0]['tracking_url'] }}'">Track Order</button>
                 </div>
                 <div class="grid-section">
                     <!-- todo: map -->
