@@ -10,10 +10,14 @@ use Printful\Structures\Generator\MockupGenerationParameters;
 use Printful\Structures\Generator\MockupPositionItem;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 use Braintree\Transaction;
 
 use App\Product;
+use App\Order;
+
+use App\Mail\OrderCreated;
 
 class ApiController extends Controller
 {
@@ -215,16 +219,16 @@ class ApiController extends Controller
     		return redirect()->back()->withErrors(['Your session has expired']);
     	}
 
-    	// $transaction = Transaction::sale([
-    	// 	'paymentMethodNonce' => $request->input('payment_method_nonce'),
-    	// 	'amount' => ($request->session()->get('shipping.order.' . $id . 'costs'))['retail_costs']['total'],
-    	// ]);
+    	$transaction = Transaction::sale([
+    		'paymentMethodNonce' => $request->input('payment_method_nonce'),
+    		'amount' => ($request->session()->get('shipping.order.' . $id . 'costs'))['retail_costs']['total'],
+    	]);
 
-    	if(true/*$transaction->success*/)
+    	if($transaction->success)
     	{
     		$client = new PrintfulApiClient(env('PRINTFUL_API_KEY'));
-    		// try 
-    		// {
+    		try 
+    		{
     			$product = $client->get('store/products/' . $id);
     			$shipping = $request->session()->get('shipping.order.' . $id . 'shipping');
 
@@ -247,22 +251,40 @@ class ApiController extends Controller
 		    				'files' => $product['sync_variants'][0]['files'],
 		    			],
 		    		],
-    			]/*, ['confirm' => true]*/);
+    			], ['confirm' => true]);
 
-    			dd($order); exit;
-    		// }
-    		// catch(Exception $e)
-    		// {
-      //           Transaction::void([
-      //               'transactionId' => $transaction->id
-      //           ]);
+    			Order::create([
+    				'printful_id' => $order['id'],
+    				'email' => $request->input('email'),
+    			]);
 
-    		// 	return redirect()->back()->withErrors(['Error occured while attempting to complete order']);
-    		// }
+    			Mail::to($request->input('email'))->send(new OrderCreated($order));
+
+    			return redirect()->route('order', ['id' => $order['id']]);
+    		}
+    		catch(Exception $e)
+    		{
+                Transaction::void([
+                    'transactionId' => $transaction->id
+                ]);
+
+    			return redirect()->back()->withErrors(['Error occured while attempting to complete order']);
+    		}
     	}
     	else
     	{
     		return redirect()->back()->withErrors(['Error occured while attempting to complete order']);
     	}
+    }
+
+    public function viewOrder(Request $request, $id)
+    {
+    	$client = new PrintfulApiClient(env('PRINTFUL_API_KEY'));
+
+    	$order = $client->get('order/' . $id);
+
+    	return view('status', [
+    		'order' => $order,
+    	]);
     }
 }

@@ -22,6 +22,8 @@ Route::group(['middleware' => ['web']], function() {
 	    return view('buy', ['id' => $id, 'url' => $request->query('url')]);
 	});
 
+	Route::get('/order/{id}', 'ApiController@viewOrder')->name('order');
+
 	Route::post('/buy/{id}', 'ApiController@handlePurchase');
 
 	Route::group(['prefix' => 'api'], function() {
