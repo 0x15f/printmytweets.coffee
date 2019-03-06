@@ -30,22 +30,32 @@
 
             .braintree-option {
                 background-color: #e2dbd7;
+                font-family: "PT Mono", monospace;
+                font-size: 16px;
             }
 
             .braintree-card {
                 background-color: #e2dbd7;
+                font-family: "PT Mono", monospace;
+                font-size: 16px;
             }
 
             .braintree-form {
                 background-color: #e2dbd7;
+                font-family: "PT Mono", monospace;
+                font-size: 16px;
             }
 
             .braintree-large-button {
                 background-color: #e2dbd7;
+                font-family: "PT Mono", monospace;
+                font-size: 16px;
             }
 
             .braintree-option:hover {
                 background-color: #e2dbd7;
+                font-family: "PT Mono", monospace;
+                font-size: 16px;
             }  
         </style>
     </head>
