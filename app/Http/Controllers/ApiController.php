@@ -121,8 +121,10 @@ class ApiController extends Controller
     			'zip' => $request->input('zip'),
     		],
     		'items' => [
-    			'variant_id' => $request->input('product_id'),
-    			'quantity' => 1,
+    			[
+	    			'variant_id' => $request->input('product_id'),
+	    			'quantity' => 1,
+    			],
     		],
     	]);
 
