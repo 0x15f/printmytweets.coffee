@@ -44,19 +44,40 @@ class ApiController extends Controller
 
     	$mockup_client = new PrintfulMockupGenerator($client);
 
-    	// $position = new MockupPositionItem;
-    	// $position->areaWidth = 9;
-    	// $position->areaHeight = 3.5;
-    	// $position->width = 9;
-    	// $position->height = 3.5;
-    	// $position->top = 1;
-    	// $position->left = 0;
+		$settings = [
+		    'oauth_access_token' => env('TWITTER_OAUTH_ACCESS_TOKEN'),
+		    'oauth_access_token_secret' => env('TWITTER_OAUTH_ACCESS_TOKEN_SECRET'),
+		    'consumer_key' => env('TWITTER_CONSUMER_KEY'),
+		    'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
+		];
+
+		$id = @array_values(array_slice(explode('/', $request->query('url')), -1))[0];
+		if($id === null)
+		{
+			return response()->json([]);
+		}
+
+		$twitter = new \TwitterAPIExchange($settings);
+		$response = $twitter->setGetfield('?id=' . $id)->buildOauth('https://api.twitter.com/1.1/statuses/show.json', 'GET')->performRequest(); 
+
+		// TODO: SMART IMAGE PLACEMENT
+		$position = null
+		if(isset(isset($result['entities']['media'])))
+		{
+	    	$position = new MockupPositionItem;
+	    	$position->areaWidth = 9;
+	    	$position->areaHeight = 3.5;
+	    	$position->width = 9;
+	    	$position->height = 3.5;
+	    	$position->top = 1;
+	    	$position->left = 0;
+		}
 
     	$mockup_params = new MockupGenerationParameters;
     	$mockup_params->productId = 19;
     	$mockup_params->variantIds[] = 1320;
-    	// $mockup_params->optionGroups[] = '';
-    	$mockup_params->addImageUrl('default', route('api.thumbnail', ['url' => $request->query('url')])/*, $position*/);
+
+    	$mockup_params->addImageUrl('default', route('api.thumbnail', ['url' => $request->query('url')]), $position);
 
     	$print_files = $mockup_client->createGenerationTaskAndWaitForResult($mockup_params);
 
