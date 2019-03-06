@@ -369,6 +369,7 @@
                             <span style="color: red;">{{ session()->get('error') }}</span><br>
                         @endif
                         <span id="country-error" style="color: red;">Invalid country code</span><br>
+                        <span id="payment-error" style="color: red;">Please select a payment method</span><br>
                     </p>
 
                     <div id="shipping-section">
@@ -423,6 +424,7 @@
                 $('#billing-form').hide();
 
                 $('#country-error').hide();
+                $('#payment-error').hide();
 
                 $('#loader').fadeOut();
 
@@ -483,6 +485,7 @@
                                     event.preventDefault();
                                     instance.requestPaymentMethod(function (err, payload) {
                                         if (err) {
+                                            $('#payment-error').show();
                                             console.log('Request Payment Method Error', err);
                                             return;
                                         }
