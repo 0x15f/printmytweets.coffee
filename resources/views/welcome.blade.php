@@ -49,7 +49,7 @@
                     <center>
                         <h2>Preview</h2>
                         <div id="image-holder">
-                            <img id="preview-img" style="width: 250px; height: 250px;" src="/preview.png">
+                            <img id="preview-img" style="width: 250px; height: 250px;" src="/preview.jpg">
                         </div>
                         <br>
                         <button class="center" type="submit">Order Now</button>
