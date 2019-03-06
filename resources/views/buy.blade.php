@@ -363,13 +363,13 @@
 
                     <p>
                         @foreach($errors->all() as $error)
-                            <span style="color: red;">{{ $error }}</span><br>
+                            <span style="color: red;">{{ $error }}<br></span>
                         @endforeach
                         @if (session()->get('error'))
-                            <span style="color: red;">{{ session()->get('error') }}</span><br>
+                            <span style="color: red;">{{ session()->get('error') }}<br></span>
                         @endif
-                        <span id="country-error" style="color: red;">Invalid country code</span><br>
-                        <span id="payment-error" style="color: red;">Please select a payment method</span><br>
+                        <span id="country-error" style="color: red;">Invalid country code<br></span>
+                        <span id="payment-error" style="color: red;">Please select a payment method<br></span>
                     </p>
 
                     <div id="shipping-section">
