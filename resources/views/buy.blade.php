@@ -27,6 +27,14 @@
                     transform:rotate(360deg);
                 }
             }
+
+            .braintree-option {
+                background-color: #e2dbd7;
+            }
+
+            .braintree-option:hover {
+                background-color: #e2dbd7;
+            }  
         </style>
     </head>
     <body>
@@ -120,7 +128,7 @@
 
                 $('#previous-step-button').on('click', function() {
                     $('#shipping-section').show();
-                    $('#shipping-form').hide();
+                    $('#shipping-form').show();
                     $('#billing-form').hide();
                     $('#billing-section').hide();
                 });
