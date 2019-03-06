@@ -215,16 +215,16 @@ class ApiController extends Controller
     		return redirect()->back()->withErrors(['Your session has expired']);
     	}
 
-    	$transaction = Transaction::sale([
-    		'paymentMethodNonce' => $request->input('payment_method_nonce'),
-    		'amount' => ($request->session()->get('shipping.order.' . $id . 'costs'))['retail_costs']['total'],
-    	]);
+    	// $transaction = Transaction::sale([
+    	// 	'paymentMethodNonce' => $request->input('payment_method_nonce'),
+    	// 	'amount' => ($request->session()->get('shipping.order.' . $id . 'costs'))['retail_costs']['total'],
+    	// ]);
 
-    	if($transaction->success)
+    	if(true/*$transaction->success*/)
     	{
     		$client = new PrintfulApiClient(env('PRINTFUL_API_KEY'));
-    		try 
-    		{
+    		// try 
+    		// {
     			$product = $client->get('store/products/' . $id);
     			$shipping = $request->session()->get('shipping.order.' . $id . 'shipping');
 
@@ -246,16 +246,16 @@ class ApiController extends Controller
 		    				'files' => $product['sync_variants'][0]['files'],
 		    			],
 		    		],
-    			], ['confirm' => true]);
+    			]/*, ['confirm' => true]*/);
     		}
-    		catch(Exception $e)
-    		{
-                Transaction::void([
-                    'transactionId' => $transaction->id
-                ]);
+    		// catch(Exception $e)
+    		// {
+      //           Transaction::void([
+      //               'transactionId' => $transaction->id
+      //           ]);
 
-    			return redirect()->back()->withErrors(['Error occured while attempting to complete order']);
-    		}
+    		// 	return redirect()->back()->withErrors(['Error occured while attempting to complete order']);
+    		// }
     	}
     	else
     	{
