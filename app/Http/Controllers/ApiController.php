@@ -62,7 +62,7 @@ class ApiController extends Controller
 
 		// TODO: SMART IMAGE PLACEMENT
 		$position = null;
-		if(isset($result['entities']['media']))
+		if(!isset($result['entities']['media']))
 		{
 	    	$position = new MockupPositionItem;
 	    	$position->areaWidth = 9;
