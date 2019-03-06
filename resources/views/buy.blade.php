@@ -88,7 +88,7 @@
 
             .loader-icon {
                 position: fixed;
-                z-index: 999;
+                z-index: 9999;
                 height: 2em;
                 width: 2em;
                 overflow: visible;
@@ -97,6 +97,7 @@
                 left: 0;
                 bottom: 0;
                 right: 0;
+                background-color: #e2dbd7;
             }
         </style>
     </head>
