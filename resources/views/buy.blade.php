@@ -75,10 +75,20 @@
                 font-family: "PT Mono", monospace;
                 font-size: 16px;
             }  
+
+            #loader {
+                position: fixed;
+                left: 0px;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+                z-index: 9999;
+            }
         </style>
     </head>
     <body>
         <div id="header-title"><h1><a href="#"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
+        <div id="loader"><i class="bx bx-lg bxs-coffee spinner"></i></div>
         <main>
             <div class="section" id="buy">
             <div class="grid two">
@@ -134,6 +144,8 @@
                 $('#next-step-button').hide();
                 $('#billing-section').hide();
                 $('#billing-form').hide();
+
+                $('.loader').fadeOut();
 
                 $('#shipping-form').on('submit', function(event) {
                     event.preventDefault();
