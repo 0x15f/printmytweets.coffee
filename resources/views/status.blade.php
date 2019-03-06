@@ -14,7 +14,7 @@
         <link rel="icon" type="image/png" href="/favicon.png">
     </head>
     <body>
-        <div id="header-title"><h1><a href="#"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
+        <div id="header-title"><h1><a href="/"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
         <main>
             <div class="section" id="buy">
             <div class="grid two">
@@ -28,7 +28,7 @@
                 <div class="grid-section">
                     <center>
                         <h2>Preview</h2>
-                        <img style="width: 250px; height: 250px;" src="/storage/{{ $order['items'][0]['product']['variant_id'] }}.png">
+                        <img style="width: 400px; height: 400px;" src="/storage/{{ $order['id'] }}.png">
                     </center>
                 </div>
             </div>

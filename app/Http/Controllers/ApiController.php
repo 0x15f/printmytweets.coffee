@@ -253,6 +253,9 @@ class ApiController extends Controller
 		    		],
     			], ['confirm' => true]);
 
+    			// replace product image with order image
+    			Storage::disk('public')->move($product['id'] . '.png', $order['id'] . '.png');
+
     			Order::create([
     				'printful_id' => $order['id'],
     				'email' => $request->input('email'),
