@@ -171,7 +171,7 @@ class ApiController extends Controller
     				'id' => 1,
     				'external_id' => uniqid(),
     				'variant_id' => 1320,
-    				'sync_variant_id' => $printful_product['id'],
+    				'sync_variant_id' => $printful_product['sync_variants'][0]['id'],
     				'external_variant_id' => $printful_product['sync_product']['external_id'],
     				'quantity' => 1,
     				'price' => 7.95,
