@@ -182,29 +182,30 @@
                             $('#total-cost').html('$' + data.total.total);
 
                             braintree.dropin.create({
-                              authorization: '{{ \Braintree\ClientToken::generate() }}',
-                              selector: '#dropin-container',
-                              paypal: {
-                                flow: 'checkout',
-                                amount: data.total.total
-                              }
+                                authorization: '{{ \Braintree\ClientToken::generate() }}',
+                                selector: '#dropin-container',
+                                paypal: {
+                                    flow: 'checkout',
+                                    amount: data.total.total
+                                }
                             }, function (createErr, instance) {
-                              if (createErr) {
-                                console.log('Create Error', createErr);
-                                return;
-                              }
-                              form.addEventListener('submit', function (event) {
-                                event.preventDefault();
-                                instance.requestPaymentMethod(function (err, payload) {
-                                  if (err) {
-                                    console.log('Request Payment Method Error', err);
+                                if (createErr) {
+                                    console.log('Create Error', createErr);
                                     return;
-                                  }
+                                }
+                                
+                                document.getElementById('billing-form').addEventListener('submit', function (event) {
+                                    event.preventDefault();
+                                    instance.requestPaymentMethod(function (err, payload) {
+                                        if (err) {
+                                            console.log('Request Payment Method Error', err);
+                                            return;
+                                        }
 
-                                  document.querySelector('#nonce').value = payload.nonce;
-                                  form.submit();
+                                        document.querySelector('#nonce').value = payload.nonce;
+                                        document.getElementById('billing-form').submit();
+                                    });
                                 });
-                              });
                             });
                         }
                     });
