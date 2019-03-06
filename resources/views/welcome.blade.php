@@ -39,7 +39,7 @@
                     <p>Retweeting is cool and all, but have you ever printed one of your favorite tweets onto a coffee mug? Come on! You know you want to look at this every morning.</p>
                     <p>What are you waiting for? You can get your favorite tweet printed on a coffee mug for only $12 (with free shipping included)!</p>
                     <form>
-                        <input type="text" id="tweet_url" placeholder="Tweet Link">
+                        <input type="text" id="tweet_url" onclick="this.setSelectionRange(0, this.value.length);" placeholder="Tweet Link">
                         <div class="center">
                             <button type="button" id="preview-button">Preview</button>
                         </div>

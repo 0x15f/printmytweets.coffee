@@ -61,7 +61,7 @@ class ApiController extends Controller
 		$response = $twitter->setGetfield('?id=' . $id)->buildOauth('https://api.twitter.com/1.1/statuses/show.json', 'GET')->performRequest(); 
 
 		// TODO: SMART IMAGE PLACEMENT
-		$position = null
+		$position = null;
 		if(isset(isset($result['entities']['media'])))
 		{
 	    	$position = new MockupPositionItem;
