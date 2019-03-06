@@ -39,7 +39,7 @@
                     <p>
                         Mug Cost: $15<br>
                         Shipping Cost: <span id="shipping_cost">----</span><br>
-                        Total Cost: <span id="total-cost"></span>
+                        Total Cost: <span id="total-cost">----</span>
                     </p>
                     <div id="shipping-section">
                         <form id="shipping-form">
@@ -94,6 +94,7 @@
                         },
                         success: function(data) {
                             $('#shipping_cost').html('$' + data.shipping.rate + ' ' + data.shipping.name);
+                            $('#total-cost').html('$' + data.total.total);
                         }
                     });
                 });
