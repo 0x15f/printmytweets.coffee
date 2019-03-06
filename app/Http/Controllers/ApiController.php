@@ -60,17 +60,16 @@ class ApiController extends Controller
 		$twitter = new \TwitterAPIExchange($settings);
 		$response = $twitter->setGetfield('?id=' . $id)->buildOauth('https://api.twitter.com/1.1/statuses/show.json', 'GET')->performRequest(); 
 
-		// TODO: SMART IMAGE PLACEMENT
-		$position = null;
+    	$position = new MockupPositionItem;
+    	$position->areaWidth = 9;
+    	$position->areaHeight = 3.5;
+    	$position->width = 9;
+    	$position->height = 3.5;
+    	$position->top = 0;
+    	$position->left = 0.5;
 		if(!isset($result['entities']['media']))
 		{
-	    	$position = new MockupPositionItem;
-	    	$position->areaWidth = 9;
-	    	$position->areaHeight = 3.5;
-	    	$position->width = 9;
-	    	$position->height = 3.5;
-	    	$position->top = 1;
-	    	$position->left = 0;
+			$position->top = 1;
 		}
 
     	$mockup_params = new MockupGenerationParameters;
@@ -85,6 +84,7 @@ class ApiController extends Controller
 
 		return response()->json([
 			'base64' => base64_encode($image_string),
+			'product' => $printful_product['id'],
 		]);
     }
 
@@ -93,5 +93,12 @@ class ApiController extends Controller
 		return response()->stream(function() use ($request) {
 			echo file_get_contents('https://s1.printmytweets.coffee/?id=' . @(array_values(array_slice(explode('/', $request->query('url')), -1))[0]) . '&url=' . $request->query('url'));
 		}, 200, ['Content-type' => 'image/png']);
+    }
+
+    public function calculateShippingRate(Request $request)
+    {
+    	$request->validate([
+    		''
+    	]);
     }
 }
