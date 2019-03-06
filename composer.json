@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.1.3",
         "braintree/braintree_php": "^3.39",
+        "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "~6.0",
         "j7mbo/twitter-api-php": "^1.0",

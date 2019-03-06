@@ -15,7 +15,7 @@ class UpdateOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->string('printful_id');
-            $table->dropColumns(['printful_uid']);
+            $table->dropColumn('printful_uid');
         });
     }
 
