@@ -40,6 +40,10 @@
                 background-color: #e2dbd7;
             }
 
+            .braintree-large-button {
+                background-color: #e2dbd7;
+            }
+
             .braintree-option:hover {
                 background-color: #e2dbd7;
             }  
