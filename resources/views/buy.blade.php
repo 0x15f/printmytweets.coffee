@@ -465,7 +465,8 @@
                                 selector: '#dropin-container',
                                 paypal: {
                                     flow: 'checkout',
-                                    amount: data.total.total
+                                    amount: data.total.total.toString(),
+                                    currency: 'USD'
                                 }
                             }, function (createErr, instance) {
                                 if (createErr) {
