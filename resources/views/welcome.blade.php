@@ -78,12 +78,12 @@
                     var url = $('#tweet_url').val();
 
                     $('#error').hide();
-                    if(!url.match('/(?:http:\/\/)?(?:www\.)?twitter\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/g'))
+                    if(!url.match('/(https:\/\/)?(?:www\.)?twitter\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/g'))
                     {
                         $('#error').show();
                         return false;
                     }
-                    
+
                     $('#image-holder').html('<i class="bx bx-lg bxs-coffee spinner"></i>');
                     $('#preview-button').attr('disabled', true);
 
