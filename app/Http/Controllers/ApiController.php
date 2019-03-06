@@ -189,8 +189,8 @@ class ApiController extends Controller
     		],
     	]);
 
-    	$request->session()->pet('shipping.order.' . $request->input('product_id') . 'costs', $est_cost);
-    	$request->session()->pet('shipping.order.' . $request->input('product_id') . 'shipping', $cheapest_quote);
+    	$request->session()->put('shipping.order.' . $request->input('product_id') . 'costs', $est_cost);
+    	$request->session()->put('shipping.order.' . $request->input('product_id') . 'shipping', $cheapest_quote);
 
     	return response()->json([
     		'shipping' => $cheapest_quote,
