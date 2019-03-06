@@ -83,6 +83,7 @@
 
                 $('#next-step-button').hide();
                 $('#billing-section').hide();
+                $('#billing-form').hide();
 
                 $('#shipping-form').on('submit', function(event) {
                     event.preventDefault();
@@ -110,11 +111,15 @@
 
                 $('#next-step-button').on('click', function() {
                     $('#shipping-section').hide();
+                    $('#shipping-form').hide();
                     $('#billing-section').show();
+                    $('#billing-form').show();
                 });
 
                 $('#previous-step-button').on('click', function() {
                     $('#shipping-section').show();
+                    $('#shipping-form').hide();
+                    $('#billing-form').hide();
                     $('#billing-section').hide();
                 });
             });
