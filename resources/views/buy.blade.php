@@ -78,6 +78,7 @@
 
                     $.ajax({
                         url: '/api/shipping/calculate',
+                        method: 'POST',
                         data: {
                             '_token': '{{ csrf_token() }}',
                             'product_id': '{{ $id }}',
