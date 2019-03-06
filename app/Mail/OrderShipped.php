@@ -6,20 +6,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class OrderCreated extends Mailable
+class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $order;
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(array $order)
+    public function __construct(array $data)
     {
-        $this->order = $order;
+        $this->data = $data;
     }
 
     /**
@@ -29,6 +29,6 @@ class OrderCreated extends Mailable
      */
     public function build()
     {
-        return $this->subject('Your order is being processed! Order #' . $this->order['id'])->view('mail.success');
+        return $this->subject('Your order has shipped! Order #' . $this->data['order']['id'])->view('mail.shipped');
     }
 }

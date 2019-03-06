@@ -18,6 +18,7 @@ use App\Product;
 use App\Order;
 
 use App\Mail\OrderCreated;
+use App\Mail\OrderShipped;
 
 class ApiController extends Controller
 {
@@ -304,5 +305,19 @@ class ApiController extends Controller
     	return view('status', [
     		'order' => $order,
     	]);
+    }
+
+    public function handleWebhook(Request $request)
+    {
+    	if($request->input('type') !== 'package_shipped') // dont handle any other events for now
+    	{
+    		return response()->json(['success' => true]);
+    	}
+
+    	$order = Order::where('printful_id', '=', $request->input('data.order.id'))->get()->first();
+
+    	Mail::to($order->email)->send(new OrderShipped($request->input('data')));
+
+    	return response()->json(['success' => true]);
     }
 }

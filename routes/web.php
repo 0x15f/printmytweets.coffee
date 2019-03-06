@@ -32,5 +32,7 @@ Route::group(['middleware' => ['web']], function() {
 		Route::get('thumbnail/generate', 'ApiController@generateThumbnail')->name('api.thumbnail');
 
 		Route::post('shipping/calculate', 'ApiController@calculateShippingRate');
+
+		Route::post('printful/webhook', 'ApiController@handleWebhook');
 	});
 });
