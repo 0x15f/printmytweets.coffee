@@ -52,6 +52,12 @@
                 font-size: 16px;
             }
 
+            .braintree-sheet__container {
+                background-color: #e2dbd7;
+                font-family: "PT Mono", monospace;
+                font-size: 16px;
+            }
+
             .braintree-large-button:hover {
                 background-color: #e2dbd7;
                 font-family: "PT Mono", monospace;
