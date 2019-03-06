@@ -69,6 +69,7 @@
 
                 $('#preview-button').on('click', function() {
                     $('#image-holder').html('<i class="bx bx-lg bxs-coffee spinner"></i>');
+                    $('#preview-button').attr('disabled', true);
 
                     var url = $('#tweet_url').val();
 
@@ -76,6 +77,7 @@
                         url: 'https://printmytweets.coffee/api/preview?url=' + url,
                         success: function(data) {
                             $('#image-holder').html('<img id="preview-img" style="width: 250px; height: 250px;" src="data:image/jpeg;base64,' + data.base64 + '">');
+                            $('#preview-button').attr('disabled', false);
                         }
                     })
                 });
