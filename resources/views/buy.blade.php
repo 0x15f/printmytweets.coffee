@@ -55,7 +55,7 @@
                     <center>
                         <h2>Preview</h2>
                         <div id="image-holder">
-                            <img id="preview-img" style="width: 250px; height: 250px;" src="/order_images/{{ $id }}.png">
+                            <img id="preview-img" style="width: 250px; height: 250px;" src="/storage/{{ $id }}.png">
                         </div>
                     </center>
                 </div>
