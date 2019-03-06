@@ -389,6 +389,11 @@
                             @csrf
                             <input type="email" id="email" name="email" placeholder="Email" required>
                             <input type="hidden" id="nonce" name="payment_method_nonce" required>
+                            <input type="hidden" name="address1" id="billing_address1" required>
+                            <input type="hidden" name="city" id="billing_city" required>
+                            <input type="hidden" name="state_code" id="billing_state_code" required>
+                            <input type="hidden" name="country_code" id="billing_country_code" required>
+                            <input type="hidden" name="zip" id="billing_zip" required>
                             <div id="billing-loader">
                                 <center><i class="bx bx-lg bxs-coffee spinner"></i></center>
                             </div>
@@ -463,6 +468,13 @@
                             $('#email').hide();
                             $('#billing-loader').show();
 
+                            // Set billing form elements
+                            $('#billing_address1').val($('#address1').val());
+                            $('#billing_city').val($('#city').val());
+                            $('#billing_country_code').val($('#country_code').val());
+                            $('#billing_state_code').val($('#state_code').val());
+                            $('#billing_zip').val($('#zip').val();
+
                             braintree.dropin.create({
                                 authorization: '{{ \Braintree\ClientToken::generate() }}',
                                 selector: '#dropin-container',
@@ -492,7 +504,6 @@
                                     instance.requestPaymentMethod(function (err, payload) {
                                         if (err) {
                                             $('#payment-error').show();
-                                            console.log('Request Payment Method Error', err);
                                             return;
                                         }
 
