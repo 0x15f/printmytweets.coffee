@@ -89,8 +89,6 @@
             .loader-icon {
                 position: fixed;
                 z-index: 9999;
-                height: 2em;
-                width: 2em;
                 overflow: visible;
                 margin: auto;
                 top: 0;
