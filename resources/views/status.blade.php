@@ -29,7 +29,7 @@
                     <center>
                         <h2>Preview</h2>
                         <div id="image-holder">
-                            <img id="preview-img" style="width: 250px; height: 250px;" src="/storage/{{ $order['items'][0]['sync_variant_id'] }}.png">
+                            <img id="preview-img" style="width: 250px; height: 250px;" src="/storage/{{ $order['items'][0]['product']['product_id'] }}.png">
                         </div>
                     </center>
                 </div>
