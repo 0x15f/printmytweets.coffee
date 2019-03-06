@@ -84,7 +84,7 @@
                         method: 'POST',
                         data: {
                             '_token': '{{ csrf_token() }}',
-                            'url': '{{ $url }}'
+                            'url': '{{ $url }}',
                             'product_id': '{{ $id }}',
                             'address1': $('#address1').val(),
                             'city': $('#city').val(),
