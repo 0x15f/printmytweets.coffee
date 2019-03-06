@@ -79,7 +79,7 @@
                             $('#image-holder').html('<img id="preview-img" style="width: 250px; height: 250px;" src="data:image/jpeg;base64,' + data.base64 + '">');
                             $('#preview-button').attr('disabled', false);
                             $('#buy-button').attr('disabled', false);
-                            $('#buy-button').attr('product-id', data.product_id);
+                            $('#buy-button').attr('product-id', data.product);
                         }
                     })
                 });
