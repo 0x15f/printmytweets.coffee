@@ -28,7 +28,7 @@
                 }
             }
 
-            .braintree-option {
+            .braintree-option .braintree-card .braintree-form {
                 background-color: #e2dbd7;
             }
 
