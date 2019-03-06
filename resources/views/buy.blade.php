@@ -473,7 +473,7 @@
                             $('#billing_city').val($('#city').val());
                             $('#billing_country_code').val($('#country_code').val());
                             $('#billing_state_code').val($('#state_code').val());
-                            $('#billing_zip').val($('#zip').val();
+                            $('#billing_zip').val($('#zip').val());
 
                             braintree.dropin.create({
                                 authorization: '{{ \Braintree\ClientToken::generate() }}',
