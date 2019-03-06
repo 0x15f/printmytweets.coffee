@@ -45,11 +45,11 @@ class ApiController extends Controller
     	$mockup_client = new PrintfulMockupGenerator($client);
 
     	$position = new MockupPositionItem;
-    	$position->areaWidth = 2700;
-    	$position->areaHeight = 1050;
-    	$position->width = 1350;
-    	$position->height = 525;
-    	$position->top = 50;
+    	$position->areaWidth = 9;
+    	$position->areaHeight = 3.5;
+    	$position->width = 9;
+    	$position->height = 3.5;
+    	$position->top = 1;
     	$position->left = 0;
 
     	$mockup_params = new MockupGenerationParameters;
