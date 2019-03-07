@@ -77,7 +77,6 @@ class ApiController extends Controller
     	$position->height = 3.5;
     	$position->top = 0;
     	$position->left = 0.5;
-        dd($response); exit;
 		if(!isset($response['entities']['media']))
 		{
 			$position->top = 1;
