@@ -41,19 +41,6 @@ class ApiController extends Controller
         $response = $twitter->setGetfield('?id=' . $id)->buildOauth('https://api.twitter.com/1.1/statuses/show.json', 'GET')->performRequest(); 
         $response = json_decode($response, true);
 
-        if(isset($response['entities']['media']))
-        {
-            return response()->json([
-                'base64' => base64_encode(file_get_contents(route('api.thumbnail', ['url' => $request->query('url')]))),
-            ]);
-        }
-        else
-        {
-            return response()->json([
-                'base64' => base64_encode(file_get_contents(route('api.thumbnail', ['url' => $request->query('url'), 'padding' => 'yes']))),
-            ]);
-        }
-
 		$product = Product::create([
 			'url' => $request->query('url'),
 		]);
