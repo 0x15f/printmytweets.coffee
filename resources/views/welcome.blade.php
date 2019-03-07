@@ -92,12 +92,12 @@
 
                             var productImg = new Image();
 
-                            productImg.width = 500;
-                            productImg.height = 500;
-                            
+                            productImg.style.width = '250px';
+                            productImg.style.height = '250px';
+
                             productImg.onload = function() {
-                                var iw = productImg.width;
-                                var ih = productImg.height;
+                                var iw = 250;
+                                var ih = 250;
 
                                 canvas.width = iw;
                                 canvas.height = ih;
