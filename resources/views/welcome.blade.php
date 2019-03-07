@@ -92,34 +92,35 @@
 
                             var productImg = new Image();
                             productImg.onload = function() {
-                            var iw = productImg.width;
-                            var ih = productImg.height;
+                                var iw = productImg.width;
+                                var ih = productImg.height;
 
-                            canvas.width = iw;
-                            canvas.height = ih;
+                                canvas.width = iw;
+                                canvas.height = ih;
 
-                            ctx.drawImage(productImg, 0, 0, productImg.width, productImg.height,0, 0, iw, ih);
+                                ctx.drawImage(productImg, 0, 0, productImg.width, productImg.height,0, 0, iw, ih);
+
+                                var img = new Image();
+                                img.src = 'data:image/jpeg;base64,' + data.base64;
+                                img.onload = function() {
+                                    var iw = img.width;
+                                    var ih = img.height;
+
+                                    var xOffset = 101, yOffset = 110;
+
+                                    var a = 75.0;
+                                    var b = 10;
+
+                                    var scaleFactor = iw / (4 * a);
+
+                                    for (var X = 0; X < iw; X += 1) {
+                                        var y = b / a * Math.sqrt(a * a - (X - a) * (X - a));
+                                        ctx.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
+                                    }
+                                };
+                            };
 
                             productImg.src = '/mug-blank.png';
-
-                            var img = new Image();
-                            img.src = 'data:image/jpeg;base64,' + data.base64;
-                            img.onload = function() {
-                                var iw = img.width;
-                                var ih = img.height;
-
-                                var xOffset = 101, yOffset = 110;
-
-                                var a = 75.0;
-                                var b = 10;
-
-                                var scaleFactor = iw / (4 * a);
-
-                                for (var X = 0; X < iw; X += 1) {
-                                    var y = b / a * Math.sqrt(a * a - (X - a) * (X - a));
-                                    ctx.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
-                                }
-                            }
 
                             $('#image-holder').hide();
                             $('#canvas').show();
@@ -129,8 +130,6 @@
                             $('#buy-button').attr('product-id', data.product);
                         }
                     });
-
-                    return false;
                 });
 
                 $('#buy-button').on('click', function() {
