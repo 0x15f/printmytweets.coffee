@@ -24,6 +24,23 @@ class ApiController extends Controller
 {
     public function generateMockup(Request $request)
     {
+        $settings = [
+            'oauth_access_token' => env('TWITTER_OAUTH_ACCESS_TOKEN'),
+            'oauth_access_token_secret' => env('TWITTER_OAUTH_ACCESS_TOKEN_SECRET'),
+            'consumer_key' => env('TWITTER_CONSUMER_KEY'),
+            'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
+        ];
+
+        $id = @array_values(array_slice(explode('/', $request->query('url')), -1))[0];
+        if($id === null)
+        {
+            return response()->json([]);
+        }
+
+        $twitter = new \TwitterAPIExchange($settings);
+        $response = $twitter->setGetfield('?id=' . $id)->buildOauth('https://api.twitter.com/1.1/statuses/show.json', 'GET')->performRequest(); 
+        $response = json_decode($response, true);
+
 		$product = Product::create([
 			'url' => $request->query('url'),
 		]);
@@ -43,7 +60,7 @@ class ApiController extends Controller
 	    			'retail_price' => '15',
 	    			'files' => [
 		    			[
-		    				'url' => route('api.thumbnail', ['url' => $request->query('url')]),
+		    				'url' => isset($response['entities']['media']) ? route('api.thumbnail', ['url' => $request->query('url')]) : route('api.thumbnail', ['url' => $request->query('url'), 'padding' => yes],
 		    			],
 		    		],
 	    			'options' => [],
@@ -52,23 +69,6 @@ class ApiController extends Controller
     	]);
 
     	$mockup_client = new PrintfulMockupGenerator($client);
-
-		$settings = [
-		    'oauth_access_token' => env('TWITTER_OAUTH_ACCESS_TOKEN'),
-		    'oauth_access_token_secret' => env('TWITTER_OAUTH_ACCESS_TOKEN_SECRET'),
-		    'consumer_key' => env('TWITTER_CONSUMER_KEY'),
-		    'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
-		];
-
-		$id = @array_values(array_slice(explode('/', $request->query('url')), -1))[0];
-		if($id === null)
-		{
-			return response()->json([]);
-		}
-
-		$twitter = new \TwitterAPIExchange($settings);
-		$response = $twitter->setGetfield('?id=' . $id)->buildOauth('https://api.twitter.com/1.1/statuses/show.json', 'GET')->performRequest(); 
-        $response = json_decode($response, true);
 
     	$position = new MockupPositionItem;
     	$position->areaWidth = 9;
@@ -103,7 +103,14 @@ class ApiController extends Controller
     public function generateThumbnail(Request $request)
     {
 		return response()->stream(function() use ($request) {
-			echo file_get_contents('https://s1.printmytweets.coffee/?id=' . @(array_values(array_slice(explode('/', $request->query('url')), -1))[0]) . '&url=' . $request->query('url'));
+            if($request->query('padding') !== null)
+            {
+                echo file_get_contents('https://s1.printmytweets.coffee/?id=' . @(array_values(array_slice(explode('/', $request->query('url')), -1))[0]) . '&padding=yes&url=' . $request->query('url'));
+            }
+            else
+            {
+                echo file_get_contents('https://s1.printmytweets.coffee/?id=' . @(array_values(array_slice(explode('/', $request->query('url')), -1))[0]) . '&url=' . $request->query('url'));
+            }
 		}, 200, ['Content-type' => 'image/png']);
     }
 
