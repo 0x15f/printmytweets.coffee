@@ -91,6 +91,10 @@
                             var ctx = canvas.getContext('2d');
 
                             var productImg = new Image();
+
+                            productImg.width = 500;
+                            productImg.height = 500;
+                            
                             productImg.onload = function() {
                                 var iw = productImg.width;
                                 var ih = productImg.height;
@@ -128,6 +132,8 @@
                             $('#preview-button').attr('disabled', false);
                             $('#buy-button').attr('disabled', false);
                             $('#buy-button').attr('product-id', data.product);
+
+                            return false;
                         }
                     });
                 });
