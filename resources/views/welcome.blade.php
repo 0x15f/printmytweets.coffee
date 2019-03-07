@@ -40,10 +40,10 @@
                     <h2>Buy</h2>
                     <p>Retweeting is cool and all, but have you ever printed one of your favorite tweets onto a coffee mug? Come on! You know you want to look at this every morning.</p>
                     <p>What are you waiting for? You can get your favorite tweet printed on a coffee mug for only $15!</p>
-                    <form>
+                    <form id="preview-form">
                         <input type="text" id="tweet_url" onclick="this.setSelectionRange(0, this.value.length);" placeholder="Tweet Link" pattern="(https:\/\/)?(?:www\.)?twitter\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)">
                         <div class="center">
-                            <button type="button" id="preview-button">Preview</button>
+                            <button type="submit">Preview</button>
                         </div>
                     </form>
                 </div>
@@ -53,6 +53,7 @@
                         <div id="image-holder">
                             <img id="preview-img" style="width: 250px; height: 250px;" src="/preview.jpg">
                         </div>
+                        <canvas id="canvas"></canvas>
                         <br>
                         <button id="buy-button" class="center" type="button" product-id="" disabled>Order Now</button>
                     </center>
@@ -71,8 +72,11 @@
                 document.getElementById('automatic_copyright_year').innerHTML = new Date().getFullYear();
 
                 $('#error').hide();
+                $('#canvas').hide();
 
-                $('#preview-button').on('click', function() {
+                $('#preview-form').on('submit', function(event) {
+                    event.preventDefault();
+
                     var url = $('#tweet_url').val();
 
                     $('#image-holder').html('<i class="bx bx-lg bxs-coffee spinner"></i>');
@@ -81,12 +85,52 @@
                     $.ajax({
                         url: 'https://printmytweets.coffee/api/preview?url=' + url,
                         success: function(data) {
-                            $('#image-holder').html('<img id="preview-img" style="width: 250px; height: 250px;" src="data:image/jpeg;base64,' + data.base64 + '">');
+                            // $('#image-holder').html('<img id="preview-img" style="width: 250px; height: 250px;" src="data:image/jpeg;base64,' + data.base64 + '">');
+
+                            var canvas = document.getElementById('canvas');
+                            var ctx = canvas.getContext('2d');
+
+                            var productImg = new Image();
+                            productImg.onload = function() {
+                            var iw = productImg.width;
+                            var ih = productImg.height;
+
+                            canvas.width = iw;
+                            canvas.height = ih;
+
+                            ctx.drawImage(productImg, 0, 0, productImg.width, productImg.height,0, 0, iw, ih);
+
+                            productImg.src = '/mug-blank.png';
+
+                            var img = new Image();
+                            img.src = 'data:image/jpeg;base64,' + data.base64;
+                            img.onload = function() {
+                                var iw = img.width;
+                                var ih = img.height;
+
+                                var xOffset = 101, yOffset = 110;
+
+                                var a = 75.0;
+                                var b = 10;
+
+                                var scaleFactor = iw / (4 * a);
+
+                                for (var X = 0; X < iw; X += 1) {
+                                    var y = b / a * Math.sqrt(a * a - (X - a) * (X - a));
+                                    ctx.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
+                                }
+                            }
+
+                            $('#image-holder').hide();
+                            $('#canvas').show();
+
                             $('#preview-button').attr('disabled', false);
                             $('#buy-button').attr('disabled', false);
                             $('#buy-button').attr('product-id', data.product);
                         }
-                    })
+                    });
+
+                    return false;
                 });
 
                 $('#buy-button').on('click', function() {
