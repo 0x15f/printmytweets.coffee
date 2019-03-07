@@ -255,7 +255,7 @@ class ApiController extends Controller
     			], ['confirm' => true]);
 
     			// replace product image with order image
-    			Storage::disk('public')->move($product['id'] . '.png', $order['id'] . '.png');
+    			Storage::disk('public')->move($id . '.png', $order['id'] . '.png');
 
     			Order::create([
     				'printful_id' => $order['id'],
@@ -266,7 +266,7 @@ class ApiController extends Controller
 
     			return redirect()->route('order', ['id' => $order['id']]);
     		}
-    		catch(Exception $e)
+    		catch(\Exception $e)
     		{
                 Transaction::void([
                     'transactionId' => $transaction->id
