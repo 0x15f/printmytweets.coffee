@@ -53,7 +53,7 @@
                         <div id="image-holder">
                             <img id="preview-img" style="width: 250px; height: 250px;" src="/preview.jpg">
                         </div>
-                        <canvas id="canvas"></canvas>
+                        <canvas id="canvas" style="max-width: 250px; max-height: 250px; width: 250px; height: 250px;"></canvas>
                         <br>
                         <button id="buy-button" class="center" type="button" product-id="" disabled>Order Now</button>
                     </center>
