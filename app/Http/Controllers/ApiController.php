@@ -60,7 +60,7 @@ class ApiController extends Controller
 	    			'retail_price' => '15',
 	    			'files' => [
 		    			[
-		    				'url' => isset($response['entities']['media']) ? route('api.thumbnail', ['url' => $request->query('url')]) : route('api.thumbnail', ['url' => $request->query('url'), 'padding' => yes]),
+		    				'url' => isset($response['entities']['media']) ? route('api.thumbnail', ['url' => $request->query('url')]) : route('api.thumbnail', ['url' => $request->query('url'), 'padding' => 'yes']),
 		    			],
 		    		],
 	    			'options' => [],
