@@ -68,6 +68,7 @@ class ApiController extends Controller
 
 		$twitter = new \TwitterAPIExchange($settings);
 		$response = $twitter->setGetfield('?id=' . $id)->buildOauth('https://api.twitter.com/1.1/statuses/show.json', 'GET')->performRequest(); 
+        $response = json_decode($response, true);
 
     	$position = new MockupPositionItem;
     	$position->areaWidth = 9;
