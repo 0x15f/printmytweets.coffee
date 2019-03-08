@@ -32,7 +32,7 @@
         </style>
     </head>
     <body>
-        <div id="header-title"><h1><a href="#"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
+        <div id="header-title"><h1><a href="/"><i class="bx bxs-coffee"></i><br>Print My Tweets</a></h1></div>
         <main>
             <div class="section" id="buy">
             <div class="grid two">
