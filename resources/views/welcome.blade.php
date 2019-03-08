@@ -117,12 +117,15 @@
 
                                     var scaleFactor = iw / (4 * a);
 
+                                    var tmpCanvas = document.createElement('canvas');
+
                                     for (var X = 0; X < iw; X += 1) {
                                         var y = b / a * Math.sqrt(a * a - (X - a) * (X - a));
                                         ctx.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
+                                        tmpCanvas.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
                                     }
 
-                                    var pixels = ctx.getImageData(0, 0, iw, ih);
+                                    var pixels = tmpCanvas.getImageData(0, 0, iw, ih);
                                     for(var i = 0, len = pixels.data.length; i < len; i += 4){
                                         var r = pixels.data[i];
                                         var g = pixels.data[i+1];
