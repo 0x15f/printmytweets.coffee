@@ -41,7 +41,7 @@
                     <p>Retweeting is cool and all, but have you ever printed one of your favorite tweets onto a coffee mug? Come on! You know you want to look at this every morning.</p>
                     <p>What are you waiting for? You can get your favorite tweet printed on a coffee mug for only $15!</p>
                     <form id="preview-form">
-                        <input type="text" id="tweet_url" onclick="this.setSelectionRange(0, this.value.length);" placeholder="Tweet Link" pattern="(https:\/\/)?(?:www\.)?twitter\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)" required>
+                        <input type="text" id="tweet_url" onclick="this.setSelectionRange(0, this.value.length);" placeholder="Tweet Link" pattern="(https:\/\/)?(?:www\.)?twitter\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)">
                         <div class="center">
                             <button type="submit">Preview</button>
                         </div>
@@ -117,27 +117,10 @@
 
                                     var scaleFactor = iw / (4 * a);
 
-                                    var tmpCanvas = document.createElement('canvas');
-                                    var tctx = tmpCanvas.getContext('2d');
-
                                     for (var X = 0; X < iw; X += 1) {
                                         var y = b / a * Math.sqrt(a * a - (X - a) * (X - a));
                                         ctx.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
-                                        tctx.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
                                     }
-
-                                    var pixels = tctx.getImageData(0, 0, iw, ih);
-                                    for(var i = 0, len = pixels.data.length; i < len; i += 4){
-                                        var r = pixels.data[i];
-                                        var g = pixels.data[i+1];
-                                        var b = pixels.data[i+2];
-
-                                        if(r == 255 && g == 255 && b == 255){
-                                            pixels.data[i+3] = 0;
-                                        }
-                                    }
-
-                                    ctx.putImageData(pixels, 0, 0);
                                 };
                             };
 
