@@ -93,11 +93,11 @@
                             var productImg = new Image();
 
                             productImg.style.width = '250px';
-                            productImg.style.height = '250px';
+                            productImg.style.height = '350px';
 
                             productImg.onload = function() {
                                 var iw = 250;
-                                var ih = 250;
+                                var ih = 350;
 
                                 canvas.width = iw;
                                 canvas.height = ih;
@@ -122,7 +122,7 @@
                                         ctx.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
                                     }
 
-                                    var pixels = ctx.getImageData(0, 0, img.width, img.height);
+                                    var pixels = ctx.getImageData(0, 0, iw, ih);
                                     for(var i = 0, len = pixels.data.length; i < len; i += 4){
                                         var r = pixels.data[i];
                                         var g = pixels.data[i+1];
