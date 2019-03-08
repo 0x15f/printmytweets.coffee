@@ -53,7 +53,6 @@
                         <div id="image-holder">
                             <img id="preview-img" style="width: 250px; height: 250px;" src="/preview.jpg">
                         </div>
-                        <canvas id="canvas"></canvas>
                         <br>
                         <button id="buy-button" class="center" type="button" product-id="" disabled>Order Now</button>
                     </center>
@@ -72,7 +71,6 @@
                 document.getElementById('automatic_copyright_year').innerHTML = new Date().getFullYear();
 
                 $('#error').hide();
-                $('#canvas').hide();
 
                 $('#preview-form').on('submit', function(event) {
                     event.preventDefault();
@@ -85,57 +83,14 @@
                     $.ajax({
                         url: 'https://printmytweets.coffee/api/preview?url=' + url,
                         success: function(data) {
-                            // $('#image-holder').html('<img id="preview-img" style="width: 250px; height: 250px;" src="data:image/jpeg;base64,' + data.base64 + '">');
-
-                            var canvas = document.getElementById('canvas');
-                            var ctx = canvas.getContext('2d');
-
-                            var productImg = new Image();
-
-                            productImg.style.width = '250px';
-                            productImg.style.height = '350px';
-
-                            productImg.onload = function() {
-                                var iw = 250;
-                                var ih = 350;
-
-                                canvas.width = iw;
-                                canvas.height = ih;
-
-                                ctx.drawImage(productImg, 0, 0, productImg.width, productImg.height,0, 0, iw, ih);
-
-                                var img = new Image();
-                                img.src = 'data:image/jpeg;base64,' + data.base64;
-                                img.onload = function() {
-                                    var iw = img.width;
-                                    var ih = img.height;
-
-                                    var xOffset = 101, yOffset = 110;
-
-                                    var a = 75.0;
-                                    var b = 10;
-
-                                    var scaleFactor = iw / (4 * a);
-
-                                    for (var X = 0; X < iw; X += 1) {
-                                        var y = b / a * Math.sqrt(a * a - (X - a) * (X - a));
-                                        ctx.drawImage(img, X * scaleFactor, 0, iw / 3, ih, X + xOffset, y + yOffset, 1, 174);
-                                    }
-                                };
-                            };
-
-                            productImg.src = '/mug-blank.png';
-
-                            $('#image-holder').hide();
-                            $('#canvas').show();
-
+                            $('#image-holder').html('<img id="preview-img" style="width: 250px; height: 250px;" src="data:image/jpeg;base64,' + data.base64 + '">');
                             $('#preview-button').attr('disabled', false);
                             $('#buy-button').attr('disabled', false);
                             $('#buy-button').attr('product-id', data.product);
-
-                            return false;
                         }
                     });
+
+                    return false;
                 });
 
                 $('#buy-button').on('click', function() {
