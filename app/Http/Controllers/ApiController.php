@@ -92,6 +92,8 @@ class ApiController extends Controller
 
     	$print_files = $mockup_client->createGenerationTaskAndWaitForResult($mockup_params);
 
+    	dd($print_files); exit;
+
     	$image_string = file_get_contents($print_files->mockupList->mockups[0]->extraMockups[0]->url);
 
     	Storage::disk('public')->put($printful_product['id'] . '.png', $image_string);
