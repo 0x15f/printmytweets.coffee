@@ -37,7 +37,7 @@
             <div class="section">
                 <h3>Privacy Policy</h3>
                 <p>
-                    Protecting your private information is our priority. This Statement of Privacy applies to _________________ and Lynn Digital LLC and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to Lynn Digital LLC include Lynn Digital LLC, Print My Tweets and https://printmytweets.coffee. The Lynn Digital LLC website is a ecommerce site. By using the Lynn Digital LLC website, you consent to the data practices described in this statement. 
+                    Protecting your private information is our priority. This Statement of Privacy applies to Print My Tweets and Lynn Digital LLC and governs data collection and usage. For the purposes of this Privacy Policy, unless otherwise noted, all references to Lynn Digital LLC include Lynn Digital LLC, Print My Tweets and https://printmytweets.coffee. The Lynn Digital LLC website is a ecommerce site. By using the Lynn Digital LLC website, you consent to the data practices described in this statement. 
                     <br><br>
                     Collection of your Personal Information 
                     In order to better provide you with products and services offered on our Site, Lynn Digital LLC may collect personally identifiable information, such as your: 
