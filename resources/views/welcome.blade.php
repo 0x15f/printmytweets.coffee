@@ -61,7 +61,7 @@
         </main>
         <br>
         <footer>
-            <p>&copy; <span id="automatic_copyright_year"></span> Print My Tweets a product of <a href="https://lynndigital.com">Lynn Digital LLC</a>. <a href="/privacy">Privacy Policy</a> - <a href="/terms">Terms and Conditions</a></p>
+            <p>&copy; <span id="automatic_copyright_year"></span> Print My Tweets a product of <a href="https://lynndigital.com">Lynn Digital LLC</a>.<br><a href="/privacy">Privacy Policy</a> - <a href="/terms">Terms and Conditions</a></p>
             <p><center><a href="https://twitter.com/printmytweetsco"><i class='bx bx-md bxl-twitter'></i></a></center></p>
         </footer>
 
