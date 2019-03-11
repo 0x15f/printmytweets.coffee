@@ -79,7 +79,7 @@
 
                     var url = $('#tweet_url').val();
 
-                    $('#image-holder').html('<i class="bx bx-lg bxs-coffee spinner"></i>');
+                    $('#image-holder').html('<i class="bx bx-lg bxs-coffee spinner"></i><br><small>It may take up to 30 seconds to generate a mockup,<br> be patient it\'s worth it!</small>');
                     $('#preview-button').attr('disabled', true);
 
                     $.ajax({
