@@ -18,6 +18,14 @@ Route::group(['middleware' => ['web']], function() {
 	    return view('welcome');
 	});
 
+	Route::get('/terms', function () {
+	    return view('terms');
+	});
+
+	Route::get('/privacy', function () {
+	    return view('privacy');
+	});
+
 	Route::get('/buy/{id}', function (Request $request, $id) {
 	    return view('buy', ['id' => $id, 'url' => $request->query('url')]);
 	});
