@@ -88,6 +88,8 @@ class ApiController extends Controller
 
     	$mockup_params->addImageUrl('default', route('api.thumbnail', ['url' => $request->query('url')]), $position);
 
+        sleep(15);// lets avoid hitting that rate limit!
+
     	$print_files = $mockup_client->createGenerationTaskAndWaitForResult($mockup_params);
 
     	$image_string = file_get_contents($print_files->mockupList->mockups[0]->extraMockups[0]->url);
