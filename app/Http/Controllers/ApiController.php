@@ -31,7 +31,7 @@ class ApiController extends Controller
             'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
         ];
 
-        $id = @array_values(array_slice(explode('/', $request->query('url')), -1))[0];
+        $id = @array_values(array_slice(explode('/', strtok($request->query('url'), '?')), -1))[0];
         if($id === null)
         {
             return response()->json([]);
